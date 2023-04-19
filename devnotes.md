@@ -9,6 +9,15 @@
      C. Ter as Choices importadas.
      D. Ter os Items importados.
 
+### User Authentication
+
+Estive a ver sobre como implementar autenticação, parece-me que a microsoft já tem ferramentas para adicionar isso, ver links abaixo.
+
+1. https://education.launchcode.org/csharp-web-development/chapters/auth/scaffolding.html
+2. https://learn.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-7.0&tabs=netcore-cli
+
+Tenho a ideia que podemos usar isto como base para identificar os users, pode ser necessário criar mais tabelas relacionadas com as que são criadas pelas ferramentas do dotnet.
+
 ## Ef dotnet Commands.
 
 - dotnet ef database drop
