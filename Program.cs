@@ -5,13 +5,12 @@ using Microsoft.AspNetCore.OpenApi;
 using Microsoft.Extensions.DependencyInjection;
 
 // TODO: Ver se existe melhor forma dee configurar isto, só quis tirar o código da frente.
-
 void ConfigBuilderServices(IServiceCollection services)
 {
     // TODO: Ler isto da AppSettings
     // TODO: Não deviamos usar TrustServerCertificate=True, no futuro alterar.
     services.AddDbContext<TasDB>(opts => 
-        opts.UseSqlServer("Server=DESKTOP-2FSRJ25\\SQLEXPRESS;Database=TakeAStep01;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=true;"
+        opts.UseSqlServer("Server=localhost;User Id=SA;Password=j#lRoi89zy#o^It0nX8O;Database=TakeAStep01;Trusted_Connection=False;TrustServerCertificate=True;MultipleActiveResultSets=true;"
     ));    
     // Builder.Services code taken from :
     // https://learn.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-7.0&tabs=visual-studio-code
@@ -46,7 +45,7 @@ var app = builder.Build();
 ConfigSwagger(app);
 
 app.MapGet("/", () => "Hello World!")
-.WithName("GetWeatherForecast") // TODO: Explorar melhor :  https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/openapi?view=aspnetcore-7.0
+.WithName("GetWeatherForecast")             // TODO: Explorar melhor :  https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/openapi?view=aspnetcore-7.0
 .WithOpenApi(operation => new(operation)    // Não parece estar a funcionar corretamente.
 {
     Summary = "This is a summary",

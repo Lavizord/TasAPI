@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projetos\\TakeAStepAPI\\TakeAStepAPI.csproj": {}
+    "C:\\Projetos\\TasApi\\TakeAStepAPI.csproj": {}
   },
   "projects": {
-    "C:\\Projetos\\TakeAStepAPI\\TakeAStepAPI.csproj": {
+    "C:\\Projetos\\TasApi\\TakeAStepAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projetos\\TakeAStepAPI\\TakeAStepAPI.csproj",
+        "projectUniqueName": "C:\\Projetos\\TasApi\\TakeAStepAPI.csproj",
         "projectName": "TakeAStepAPI",
-        "projectPath": "C:\\Projetos\\TakeAStepAPI\\TakeAStepAPI.csproj",
+        "projectPath": "C:\\Projetos\\TasApi\\TakeAStepAPI.csproj",
         "packagesPath": "C:\\Users\\Pedro\\.nuget\\packages\\",
-        "outputPath": "C:\\Projetos\\TakeAStepAPI\\obj\\",
+        "outputPath": "C:\\Projetos\\TasApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Pedro\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -61,6 +61,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.5, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[7.0.6, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
