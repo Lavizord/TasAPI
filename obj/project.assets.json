@@ -10856,19 +10856,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Pedro\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projetos\\TasApi\\TakeAStepAPI.csproj",
+      "projectUniqueName": "C:\\Projetos\\TasAPI\\TakeAStepAPI.csproj",
       "projectName": "TakeAStepAPI",
-      "projectPath": "C:\\Projetos\\TasApi\\TakeAStepAPI.csproj",
-      "packagesPath": "C:\\Users\\Pedro\\.nuget\\packages\\",
-      "outputPath": "C:\\Projetos\\TasApi\\obj\\",
+      "projectPath": "C:\\Projetos\\TasAPI\\TakeAStepAPI.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Projetos\\TasAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Pedro\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
