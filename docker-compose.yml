@@ -1,0 +1,18 @@
+version: "3"
+services:
+  webapi:
+    container_name: tasApi
+    image: tasapi
+    build:
+      dockerfile: .\dockerfile
+    ports:
+      - "20000:80"
+  sqlserver:
+    container_name: tasDb
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      MSSQL_SA_PASSWORD: "j#lRoi89zy#o^It0nX8O"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Developer"
+    ports:
+      - "1433:1433"

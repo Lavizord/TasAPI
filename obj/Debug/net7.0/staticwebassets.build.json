@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "uPdb/PJryXktRQaVCEM1zsairhQPubefGTAFTwjiTwY=",
-  "Source": "TakeAStepAPI",
-  "BasePath": "_content/TakeAStepAPI",
+  "Hash": "HFMHrV/vOV1ivYVbutiQITEvPR+9v5QUOEXqWi3VQgc=",
+  "Source": "tasApi",
+  "BasePath": "_content/tasApi",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

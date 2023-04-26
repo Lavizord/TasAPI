@@ -9,4 +9,4 @@ WORKDIR /publish
 COPY --from=build-env /publish .
 ENV ASPNETCORE_URLS=http://+:5000
 EXPOSE 5000
-ENTRYPOINT ["dotnet", "TasApi.dll"]
+ENTRYPOINT ["dotnet", "tasApi.dll"]
