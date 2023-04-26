@@ -21,9 +21,10 @@ ConfigSwagger(app);
 
 app.MapGet("/scenes", async (TasDB db) =>
 {
-    await db.Scenes.Include("SceneEffect").ToListAsync();   // TODO: Testar se isto funciona.
+    await db.Scenes.Include("SceneEffect").ToListAsync();
 });
 
+// TODO: Criar as scenas já existentes com este endpoint. Documentar particularidades.
 app.MapPost("/scenes", async (TasDB db, Scene scene) =>
 {
     await db.Scenes.AddAsync(scene);
