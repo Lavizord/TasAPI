@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace TakeAStepAPI.Migrations
+namespace tasApi.Migrations
 {
     [DbContext(typeof(TasDB))]
     partial class TasDBModelSnapshot : ModelSnapshot

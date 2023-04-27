@@ -2,10 +2,10 @@
 
 #nullable disable
 
-namespace TakeAStepAPI.Migrations
+namespace tasApi.Migrations
 {
     /// <inheritdoc />
-    public partial class _01 : Migration
+    public partial class InicialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

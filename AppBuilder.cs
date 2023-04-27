@@ -17,7 +17,7 @@ public static class AppBuilder
         var builder = WebApplication.CreateBuilder(args);
 
         // Forçamos a usar a porta 80.
-        builder.WebHost.UseUrls("http://*:8001");
+        builder.WebHost.UseUrls("http://*:5000");
         
         builder.Services.Configure<DatabaseConfiguration>(
             builder.Configuration.GetSection("DatabaseConfiguration")

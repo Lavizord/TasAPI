@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace TakeAStepAPI.Migrations
+namespace tasApi.Migrations
 {
     [DbContext(typeof(TasDB))]
-    [Migration("20230427135711_02")]
-    partial class _02
+    [Migration("20230427185837_InicialMigration")]
+    partial class InicialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

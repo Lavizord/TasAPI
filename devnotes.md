@@ -26,7 +26,6 @@ https://stackoverflow.com/questions/30172605/how-do-i-get-into-a-docker-containe
 
 docker exec -it <mycontainer> bash
 
-
 ### Para usar um DockerCompose file deve-se usar o comando:
 
 -> docker-compose up -d
@@ -51,7 +50,7 @@ Tenho a ideia que podemos usar isto como base para identificar os users, pode se
 Julgo haver uns problemas quando estamos a trabalhar com EF e docker, parece que ao fazer deploy é um pouco 'manhoso' de automatizar as migrações.
 Independentemente, segue uma lista de commandos para ajudar no processo de dev.
 
-#### Commands 
+#### Commands
 
 - dotnet ef database drop
 

@@ -1,13 +1,12 @@
 version: "3"
 services:
-  
   webapi:
     container_name: tasApi
     image: tasapi
     build:
       dockerfile: .\dockerfile
     ports:
-      - "20000:80"
+      - "5000:5000"
 
   sqlserver:
     container_name: tasDb
@@ -21,3 +20,20 @@ services:
     # Copia todos os dados de pasta /Database/sql-dump/ para o container.
     volumes:
       - ./Database/sql-dump:/docker-entrypoint-initdb.d
+    command:
+      - /bin/bash
+      - -c
+      - |
+        # Launch MSSQL and send to background
+        /opt/mssql/bin/sqlservr &
+        # Wait 10 seconds for it to be available
+        # (lame, I know, but there's no nc available to start prodding network ports)
+        sleep 30
+        # Run every script in /docker-entrypoint-initdb.d
+        # TODO set a flag so that this is only done once on creation, 
+        #      and not every time the container runs
+        for sqlScripts in /docker-entrypoint-initdb.d/*.sql
+          do /opt/mssql-tools/bin/sqlcmd -U sa -P j#lRoi89zy#o^It0nX8O -l 2 -e -i $$sqlScripts
+        done
+        # So that the container doesn't shut down, sleep this thread
+        sleep infinity
