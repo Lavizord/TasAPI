@@ -27,7 +27,6 @@ public static class AppBuilder
             .Services
             .AddDbContext<TasDB>(opt => opt.UseSqlServer(connectionString));
         
-
         builder
             .Services
             .AddEndpointsApiExplorer();

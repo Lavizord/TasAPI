@@ -19,7 +19,13 @@
 Este repositório comtem dois containers.
 
 1. Para a base de dados, deve ser inicializado usando o Docker Compose file na pasta de Database.
-2. Para a API, deve ser usado o (TODO:) Docker file + Docker Composer.
+2. Para a API, deve ser usado o Docker file + Docker Composer.
+
+Para aceder a shell de um container podemos usar os commandos neste post:
+https://stackoverflow.com/questions/30172605/how-do-i-get-into-a-docker-containers-shell
+
+docker exec -it <mycontainer> bash
+
 
 ### Para usar um DockerCompose file deve-se usar o comando:
 

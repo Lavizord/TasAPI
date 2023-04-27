@@ -5,20 +5,11 @@ using Microsoft.Extensions.DependencyInjection;
 using ConfigurationPOCO;
 
 
-void ConfigSwagger(WebApplication app)
-{
-    // Estas duas linhas podem estar wraped no if in development statement.
-    // Swagger fica disiponivel em: http://localhost:<portNumber>/swagger/
-    app.UseSwagger();
-    app.UseSwaggerUI(options => {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-        options.RoutePrefix = string.Empty;
-    });
-}
-
+// Criação e Configuração da APP.
 var app = AppBuilder.GetApp(args);
-ConfigSwagger(app);
+app = AppConfig.ConfigApp(app);
 
+// Inicio da definição dos endpoints.
 app.MapGet("/scenes", async (TasDB db) =>
 {
     await db.Scenes.Include("SceneEffect").ToListAsync();
