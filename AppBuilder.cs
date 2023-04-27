@@ -15,6 +15,9 @@ public static class AppBuilder
     public static WebApplication GetApp(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+
+        // Forçamos a usar a porta 80.
+        builder.WebHost.UseUrls("http://*:80");
         
         builder.Services.Configure<DatabaseConfiguration>(
             builder.Configuration.GetSection("DatabaseConfiguration")
@@ -27,6 +30,7 @@ public static class AppBuilder
             .Services
             .AddDbContext<TasDB>(opt => opt.UseSqlServer(connectionString));
         
+
         builder
             .Services
             .AddEndpointsApiExplorer();
