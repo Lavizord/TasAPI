@@ -1,0 +1,12 @@
+version: "0.1"
+
+services:
+  sqlserver:
+    container_name: sql-server-db
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      MSSQL_SA_PASSWORD: "j#lRoi89zy#o^It0nX8O"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Developer"
+    ports:
+      - "1433:1433"
