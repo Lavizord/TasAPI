@@ -46,7 +46,12 @@ Estive a ver sobre como implementar autenticação, parece-me que a microsoft j�
 
 Tenho a ideia que podemos usar isto como base para identificar os users, pode ser necessário criar mais tabelas relacionadas com as que são criadas pelas ferramentas do dotnet.
 
-# Ef dotnet Commands.
+# Ef dotnet Information.
+
+Julgo haver uns problemas quando estamos a trabalhar com EF e docker, parece que ao fazer deploy é um pouco 'manhoso' de automatizar as migrações.
+Independentemente, segue uma lista de commandos para ajudar no processo de dev.
+
+#### Commands 
 
 - dotnet ef database drop
 
@@ -57,3 +62,12 @@ Dá delete á base de dados. Útil na fase inicial, é mais rápido que estar a 
 Faz update á base de dados com os models e ligações definidas na API.
 Se as tabelas / db não estiver criada é criada, juntamente com as tabelas.
 O nome da DB é o que está na Connection string.
+
+- dotnet ef migration add <name>
+
+Adiciona uma nova migração, isto significa que vai construir os scripts para criar tabelas, julgo que também prepara as coisas para manter os dados de uma DB para a outra.
+
+- dotnet ef migrations script --idempotent --output "script.sql"
+
+Este commando gera os scripts para criação da base de dados.
+Como o sistema de migração é um pouco estranho com docker, podemos executar os scripts após a criação do container. Assim a DB é criada logo após a criação dos containers, já com dados lá dentro (TESTAR MELHOR.)

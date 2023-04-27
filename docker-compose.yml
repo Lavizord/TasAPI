@@ -18,5 +18,6 @@ services:
       MSSQL_PID: "Developer"
     ports:
       - "1433:1433"
+    # Copia todos os dados de pasta /Database/sql-dump/ para o container.
     volumes:
       - ./Database/sql-dump:/docker-entrypoint-initdb.d
