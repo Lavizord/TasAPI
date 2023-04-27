@@ -22,6 +22,6 @@ WORKDIR /app
 
 # COPY --from=build-env /publish .
 COPY --from=build-env /app/out .
-ENV ASPNETCORE_URLS=http://+:80
-EXPOSE 80
+ENV ASPNETCORE_URLS=http://+:8001
+EXPOSE 8001
 ENTRYPOINT ["dotnet", "tasApi.dll"]

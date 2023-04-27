@@ -10,6 +10,7 @@ var app = AppBuilder.GetApp(args);
 app = AppConfig.ConfigApp(app);
 
 // Inicio da definição dos endpoints.
+
 app.MapGet("/scenes", async (TasDB db) =>
 {
     await db.Scenes.Include("SceneEffect").ToListAsync();
