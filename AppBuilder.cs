@@ -5,8 +5,7 @@ using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.DependencyInjection;
 using ConfigurationPOCO;
-
-
+using Microsoft.AspNetCore.Http.Json;
 
 public static class AppBuilder
 {
@@ -17,11 +16,14 @@ public static class AppBuilder
         var builder = WebApplication.CreateBuilder(args);
 
         // Forçamos a usar a porta 80.
-        builder.WebHost.UseUrls("http://*:5000");
+        builder.WebHost.UseUrls("http://*:5005");
         
         builder.Services.Configure<DatabaseConfiguration>(
             builder.Configuration.GetSection("DatabaseConfiguration")
         );
+
+        // Ignore loops quando temos objetos dentro de objetos. Evita erro.
+        //builder.Services.Configure<JsonOptions>
 
         // Setup database connection // TODO: Alterar para POCO?
         var connectionString = builder.Configuration.GetConnectionString("SqlConnectionString");
