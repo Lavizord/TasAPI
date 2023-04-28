@@ -5,9 +5,10 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Text.Json;
 //using Newtonsoft.Json;
 
+var MyAllowSpecificOrigins = "_CorsPolicyLocalhost"; 
 
 // Criação e Configuração da APP.
-var app = AppBuilder.GetApp(args);
+var app = AppBuilder.GetApp(args, MyAllowSpecificOrigins);
 app = AppConfig.ConfigApp(app);
 
 // TODO: Implementar Status code?? Prolly not worth it.
@@ -47,4 +48,5 @@ app.MapGet("/choice/{id}", async (int id, TasDB db) =>
         : Results.NotFound()
 );
 
+app.UseCors(MyAllowSpecificOrigins);
 app.Run();

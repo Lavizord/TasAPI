@@ -8,7 +8,7 @@ public static class AppBuilder
 {
     // Retorna WebApp com serviços configurados.
     // App deve depois ser configurada / adicionado endpoints e iniciada .Run()
-    public static WebApplication GetApp(string[] args)
+    public static WebApplication GetApp(string[] args, string MyAllowSpecificOrigins)
     {
         var builder = WebApplication.CreateBuilder(args);
 
@@ -29,7 +29,19 @@ public static class AppBuilder
         builder
             .Services
             .AddEndpointsApiExplorer();
-        
+
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:3000")
+                                .AllowAnyMethod()
+                                .AllowAnyOrigin()
+                                .AllowAnyHeader();
+                      });
+        });
+
         builder.Services.AddSwaggerGen(c =>
         {
             c.SwaggerDoc("v1", new OpenApiInfo {
