@@ -1,11 +1,8 @@
 using Entities.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.OpenApi;
 using Microsoft.OpenApi.Models;
-using Microsoft.Extensions.Options;
-using Microsoft.Extensions.DependencyInjection;
 using ConfigurationPOCO;
-using Microsoft.AspNetCore.Http.Json;
+using System.Text.Json;
 
 public static class AppBuilder
 {
@@ -22,9 +19,6 @@ public static class AppBuilder
             builder.Configuration.GetSection("DatabaseConfiguration")
         );
 
-        // Ignore loops quando temos objetos dentro de objetos. Evita erro.
-        //builder.Services.Configure<JsonOptions>
-
         // Setup database connection // TODO: Alterar para POCO?
         var connectionString = builder.Configuration.GetConnectionString("SqlConnectionString");
         
@@ -32,7 +26,6 @@ public static class AppBuilder
             .Services
             .AddDbContext<TasDB>(opt => opt.UseSqlServer(connectionString));
         
-
         builder
             .Services
             .AddEndpointsApiExplorer();

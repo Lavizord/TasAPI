@@ -9,6 +9,7 @@ namespace Entities.Models
     {
         public TasDB(DbContextOptions<TasDB> options):base(options)
         {
+            this.ChangeTracker.LazyLoadingEnabled = false;
         }
         // TODO: Criar os Models iniciais para cada uma das tabelas no diagrama.
         // Aqui definimos as nossas entidades, que são as nossas tabelas.
@@ -44,10 +45,11 @@ namespace Entities.Models
         private void DefineSceneEffect(ModelBuilder modelBuilder)
         {
             // One to One relationship
-            modelBuilder.Entity<Scene>()
+            /*modelBuilder.Entity<Scene>()
                 .HasOne<SceneEffect>(s => s.SceneEffect)
                 .WithOne(sf => sf.Scene)
                 .HasForeignKey<SceneEffect>(sf => sf.sceneId);
+                */
         }
     }
 }
