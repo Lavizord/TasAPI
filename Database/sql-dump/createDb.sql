@@ -115,6 +115,7 @@ GO
 ALTER DATABASE [TakeAStep01] SET  READ_WRITE 
 GO
 
+
 USE [TakeAStep01]
 GO
 
@@ -211,6 +212,7 @@ GO
 COMMIT;
 GO
 
+-- Insert dos dados
 BEGIN 
     -- Insert as Scenes
     INSERT INTO TakeAStep01.dbo.Scenes (_Id, storyId, Text, Type)
@@ -256,8 +258,55 @@ BEGIN
         1,
         'You return home and resume your life, grateful for the experience and the lessons you learned.',
         'end'
+    ),
+    (
+        8,
+        2,
+        'You come across a fork in the road. One path leads to a dark and ominous forest, while the other leads to a bustling town. Which way will you go?',
+        'initial'
+    ),
+    (
+        9,
+        2,
+        'As you make your way through the forest, you stumble upon a group of goblins. They attack you without warning, and you are forced to defend yourself.',
+        NULL
+    ),
+    (
+        10,
+        2,
+        "You arrive in the town, which is bustling with activity. You see a merchant selling goods on the side of the road. Do you want to buy something?",
+        NULL
+    ),
+    (
+        11,
+        2,
+        'After defeating the goblins, you notice a cave entrance nearby. Do you want to investigate?',
+        NULL
+    ),
+    (
+        12,
+        2,
+        'You buy something from the merchant, but it turns out to be a fake. You feel cheated, but you learn an important lesson about trusting strangers.',
+        'end'
+    ),
+    (
+        13,
+        2,
+        'You explore the town further and find a hidden alleyway. You notice a small, unassuming door. Do you want to investigate?',
+        NULL
+    ),
+    (
+        14, 
+        2,
+        'As you explore the cave, you encounter a pack of wolves. They are fierce and aggressive, and you must fight for your life.',
+        NULL
+    ),
+    (
+        15,
+        2,
+        'You fight and win against the wolfs! Time to take another step!',
+        'end'
     )
-
     -- Insert das SceneEffects
     INSERT INTO TakeAStep01.dbo.SceneEffects(_Id, sceneId, goldChange, hpChange)
     VALUES
@@ -266,5 +315,44 @@ BEGIN
     ),
     (
         2, 2, 0, 0
+    ),
+    (
+        3, 3, 0, 0
+    ),
+    (
+        4, 4, 0, 0
+    ),
+    (
+        5, 5, 0, -10
+    ),
+    (
+        6, 6, 0, -20
+    ),
+    (
+        7, 7, 0, 0
+    ),
+    (
+        8, 8, 0, 0
+    ),
+    (
+        9, 9, -5, -20
+    ),
+    (
+        10, 10, 10, 0
+    ),
+    (
+        11, 11, -5, -10
+    ),
+    (
+        12, 12, -20, 0
+    ),
+    (
+        13, 13, 0, 5
+    ),
+    (
+        14, 14, -10, -10
+    ),
+    (
+        15, 15, 2, 0
     )
 END
