@@ -2,16 +2,19 @@
 
 ## Pontos a fazer:
 
+Ver isto e implementar DTOS:
+https://learn.microsoft.com/en-us/aspnet/web-api/overview/data/using-web-api-with-entity-framework/part-5
+
 0. Fazer um trello (Implementação dos Models já criados com FrontEnd - Endpoints + integração com frontend)
-   0.1. Fazer DockerFile para FrontEnd / API.
-   0.2. Fazer script para criação das scenes com DockerFile / Docker Composer
+   0.1. ~~Fazer DockerFile para FrontEnd / API.~~  
+   0.2. ~~Fazer script para criação das scenes com DockerFile / Docker Composer~~
    0.3. Com os pontos atrás fazer um dockercontainer geral.
 1. Limpar lista de TODS em Program.cs e TasContext.cs
-2. Ter os POSTS de criação de entidades funcionais.
+2. ~~Ter os POSTS de criação de entidades funcionais.~~
 3. Migração das Fixtures iniciais para DB, usando endpoints acima. (Este ponto pode ser feito em paralelo ao 2).
-   A. Ter as Scenes importadas.
-   B. Ter os SceneEffects Importados.
-   C. Ter as Choices importadas.
+   A. ~~Ter as Scenes importadas.~~
+   B. ~~Ter os SceneEffects Importados.~~
+   C. ~~Ter as Choices importadas.~~
    D. Ter os Items importados.
 
 # Docker / Deply

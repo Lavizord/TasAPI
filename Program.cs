@@ -27,6 +27,18 @@ app.MapGet("/scenes/{id}", async (int id, TasDB db) =>
             : Results.NotFound()
 );
 
+// TODO: Limitar o load as related entities a 1 level, caso contrário dá erro ao serializar.
+app.MapGet("/scenes/with/choice/{id}", async (int id, TasDB db) =>
+{
+    var scene = db.Scenes
+        .Where(scene => scene._Id == id)
+        .Include(scene => scene.OwnChoices)
+        .ToList();
+
+    return Results.Ok(scene);
+}   
+);
+
 app.MapGet("/sceneseffect/{id}", async (int id, TasDB db) =>
     await db.SceneEffects.FindAsync(id)
     is SceneEffect sceneEffect

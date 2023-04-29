@@ -35,7 +35,7 @@ public static class AppBuilder
             options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy =>
                       {
-                          policy.WithOrigins("http://localhost:3000")
+                          policy.WithOrigins("*")
                                 .AllowAnyMethod()
                                 .AllowAnyOrigin()
                                 .AllowAnyHeader();
