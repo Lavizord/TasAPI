@@ -214,145 +214,253 @@ GO
 
 -- Insert dos dados
 BEGIN 
+
     -- Insert as Scenes
-    INSERT INTO TakeAStep01.dbo.Scenes (_Id, storyId, Text, Type)
-    VALUES 
-    (
-        1, 
-        1, 
-        'You wake up on a deserted island. You see smoke rising in the distance. What do you do?',
-        'initial'
-    ),
-    (
-        2, 
-        1, 
-        'You head towards the smoke and find a tribe of natives. They welcome you and offer to help you leave the island.',
-        NULL
-    ),
-    (
-        3,
-        1,
-        'You wait for rescue, but after several days, no one comes. You start to run out of food and water. What do you do?',
-        NULL
-    ),
-    (
-        4,
-        1,
-        'The natives help you build a raft and give you directions to the nearest inhabited island. You set out and eventually make it back home.',
-        'end'
-    ),
-    (
-        5,
-        1,
-        'You search for food and water, but end up getting lost in the wilderness. You eventually find your way back to your shelter, but you''''re weak and hungry.',
-        NULL
-    ),
-    (
-        6,
-        1,
-        'You build a shelter and wait for rescue. After several more days, you are finally rescued, but you are weak and dehydrated.',
-        'end'
-    ),
-    (
-        7,
-        1,
-        'You return home and resume your life, grateful for the experience and the lessons you learned.',
-        'end'
-    ),
-    (
-        8,
-        2,
-        'You come across a fork in the road. One path leads to a dark and ominous forest, while the other leads to a bustling town. Which way will you go?',
-        'initial'
-    ),
-    (
-        9,
-        2,
-        'As you make your way through the forest, you stumble upon a group of goblins. They attack you without warning, and you are forced to defend yourself.',
-        NULL
-    ),
-    (
-        10,
-        2,
-        "You arrive in the town, which is bustling with activity. You see a merchant selling goods on the side of the road. Do you want to buy something?",
-        NULL
-    ),
-    (
-        11,
-        2,
-        'After defeating the goblins, you notice a cave entrance nearby. Do you want to investigate?',
-        NULL
-    ),
-    (
-        12,
-        2,
-        'You buy something from the merchant, but it turns out to be a fake. You feel cheated, but you learn an important lesson about trusting strangers.',
-        'end'
-    ),
-    (
-        13,
-        2,
-        'You explore the town further and find a hidden alleyway. You notice a small, unassuming door. Do you want to investigate?',
-        NULL
-    ),
-    (
-        14, 
-        2,
-        'As you explore the cave, you encounter a pack of wolves. They are fierce and aggressive, and you must fight for your life.',
-        NULL
-    ),
-    (
-        15,
-        2,
-        'You fight and win against the wolfs! Time to take another step!',
-        'end'
-    )
+    BEGIN
+        INSERT INTO TakeAStep01.dbo.Scenes (_Id, storyId, Text, Type)
+        VALUES 
+        (
+            1, 
+            1, 
+            'You wake up on a deserted island. You see smoke rising in the distance. What do you do?',
+            'initial'
+        ),
+        (
+            2, 
+            1, 
+            'You head towards the smoke and find a tribe of natives. They welcome you and offer to help you leave the island.',
+            NULL
+        ),
+        (
+            3,
+            1,
+            'You wait for rescue, but after several days, no one comes. You start to run out of food and water. What do you do?',
+            NULL
+        ),
+        (
+            4,
+            1,
+            'The natives help you build a raft and give you directions to the nearest inhabited island. You set out and eventually make it back home.',
+            'end'
+        ),
+        (
+            5,
+            1,
+            'You search for food and water, but end up getting lost in the wilderness. You eventually find your way back to your shelter, but you''''re weak and hungry.',
+            NULL
+        ),
+        (
+            6,
+            1,
+            'You build a shelter and wait for rescue. After several more days, you are finally rescued, but you are weak and dehydrated.',
+            'end'
+        ),
+        (
+            7,
+            1,
+            'You return home and resume your life, grateful for the experience and the lessons you learned.',
+            'end'
+        ),
+        (
+            8,
+            2,
+            'You come across a fork in the road. One path leads to a dark and ominous forest, while the other leads to a bustling town. Which way will you go?',
+            'initial'
+        ),
+        (
+            9,
+            2,
+            'As you make your way through the forest, you stumble upon a group of goblins. They attack you without warning, and you are forced to defend yourself.',
+            NULL
+        ),
+        (
+            10,
+            2,
+            "You arrive in the town, which is bustling with activity. You see a merchant selling goods on the side of the road. Do you want to buy something?",
+            NULL
+        ),
+        (
+            11,
+            2,
+            'After defeating the goblins, you notice a cave entrance nearby. Do you want to investigate?',
+            NULL
+        ),
+        (
+            12,
+            2,
+            'You buy something from the merchant, but it turns out to be a fake. You feel cheated, but you learn an important lesson about trusting strangers.',
+            'end'
+        ),
+        (
+            13,
+            2,
+            'You explore the town further and find a hidden alleyway. You notice a small, unassuming door. Do you want to investigate?',
+            NULL
+        ),
+        (
+            14, 
+            2,
+            'As you explore the cave, you encounter a pack of wolves. They are fierce and aggressive, and you must fight for your life.',
+            NULL
+        ),
+        (
+            15,
+            2,
+            'You fight and win against the wolfs! Time to take another step!',
+            'end'
+        )
+    END
+
     -- Insert das SceneEffects
-    INSERT INTO TakeAStep01.dbo.SceneEffects(_Id, sceneId, goldChange, hpChange)
-    VALUES
-    (
-        1, 1, 0, 0
-    ),
-    (
-        2, 2, 0, 0
-    ),
-    (
-        3, 3, 0, 0
-    ),
-    (
-        4, 4, 0, 0
-    ),
-    (
-        5, 5, 0, -10
-    ),
-    (
-        6, 6, 0, -20
-    ),
-    (
-        7, 7, 0, 0
-    ),
-    (
-        8, 8, 0, 0
-    ),
-    (
-        9, 9, -5, -20
-    ),
-    (
-        10, 10, 10, 0
-    ),
-    (
-        11, 11, -5, -10
-    ),
-    (
-        12, 12, -20, 0
-    ),
-    (
-        13, 13, 0, 5
-    ),
-    (
-        14, 14, -10, -10
-    ),
-    (
-        15, 15, 2, 0
-    )
+    BEGIN
+        INSERT INTO TakeAStep01.dbo.SceneEffects(_Id, sceneId, goldChange, hpChange)
+        VALUES
+        (
+            1, 1, 0, 0
+        ),
+        (
+            2, 2, 0, 0
+        ),
+        (
+            3, 3, 0, 0
+        ),
+        (
+            4, 4, 0, 0
+        ),
+        (
+            5, 5, 0, -10
+        ),
+        (
+            6, 6, 0, -20
+        ),
+        (
+            7, 7, 0, 0
+        ),
+        (
+            8, 8, 0, 0
+        ),
+        (
+            9, 9, -5, -20
+        ),
+        (
+            10, 10, 10, 0
+        ),
+        (
+            11, 11, -5, -10
+        ),
+        (
+            12, 12, -20, 0
+        ),
+        (
+            13, 13, 0, 5
+        ),
+        (
+            14, 14, -10, -10
+        ),
+        (
+            15, 15, 2, 0
+        )
+    END
+
+    -- Insert das Choices
+    BEGIN
+        INSERT INTO TakeAStep01.dbo.Choices(_Id, OwnSceneId, NextSceneId, Text)
+        VALUES 
+        (
+            1,
+            1,
+            2,
+            "Head towards the smoke."
+        ),
+        (
+            2,
+            1,
+            3,
+            "Stay put and wait for rescue."
+        ),
+        (
+            3,
+            2,
+            4,
+            "Leave the island."
+        ),
+        (
+            4,
+            3,
+            5,
+            "Search for food and water."
+        ),
+        (
+            5,
+            3,
+            6,
+            "Build a shelter and wait for rescue."
+        ),
+        (
+            6,
+            5,
+            6,
+            "Wait."
+        ),
+        (
+            7,
+            8,
+            9,
+            "Take the path through the forest."
+        ),
+        (
+            8,
+            8,
+            10,
+            "Head to the town."
+        ),
+        (
+            9,
+            9,
+            11,
+            "Fight!"
+        ),
+        (
+            10,
+            10,
+            12,
+            "Buy something from the merchant."
+        ),
+        (
+            11,
+            10,
+            13,
+            "Ignore the merchant and keep exploring the town."
+        ),
+        (
+            12,
+            11,
+            14,
+            "Explore the cave."
+        ),
+        (
+            13,
+            11,
+            15,
+            "Continue on your way."
+        ),
+        (
+            14,
+            13,
+            17,
+            "Open the door and go inside"
+        ),
+        (
+            15,
+            13,
+            18,
+            "Leave the door alone and keep exploring."
+        ),
+        (
+            16,
+            14,
+            15,
+            "Take the path through the forest."
+        )
+    END
 END
