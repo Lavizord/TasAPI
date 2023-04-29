@@ -48,5 +48,13 @@ app.MapGet("/choice/{id}", async (int id, TasDB db) =>
         : Results.NotFound()
 );
 
+app.MapGet("/scenes/random/initial", async (TasDB db)=>
+{
+    var random = new Random();
+    var list = await db.Scenes.Where(s => s.Type == "initial").ToListAsync();
+    return list[random.Next(list.Count)];
+}    
+);
+
 app.UseCors(MyAllowSpecificOrigins);
 app.Run();
