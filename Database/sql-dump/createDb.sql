@@ -447,13 +447,13 @@ BEGIN
         (
             14,
             13,
-            17,
+            15,
             "Open the door and go inside"
         ),
         (
             15,
             13,
-            18,
+            15,
             "Leave the door alone and keep exploring."
         ),
         (
