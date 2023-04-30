@@ -1,5 +1,6 @@
 using Microsoft.OpenApi.Models;
 using Entities.Models;
+using Dtos.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text.Json;
@@ -36,8 +37,7 @@ app.MapGet("/scenes/with/choice/{id}", async (int id, TasDB db) =>
         .ToList();
 
     return Results.Ok(scene);
-}   
-);
+});
 
 app.MapGet("/sceneseffect/{id}", async (int id, TasDB db) =>
     await db.SceneEffects.FindAsync(id)
@@ -65,6 +65,22 @@ app.MapGet("/scenes/random/initial", async (TasDB db)=>
     var list = await db.Scenes.Where(s => s.Type == "initial").ToListAsync();
     return list[random.Next(list.Count)];
 });
+
+app.MapGet("/scenes/testdto", async (int id, TasDB db)=>
+{
+    var scene = await db.Scenes.Include(s => s.OwnChoices).Select( s => 
+        new SceneDto()
+        {
+            _Id = s._Id,
+            storyId = s.storyId,
+            type = s.Type,
+            text = s.Text,
+            Choices = s.OwnChoices
+        }
+    ).SingleOrDefaultAsync(s => s._Id == id );
+    return Results.Ok(scene);
+});
+
 
 app.UseCors(MyAllowSpecificOrigins);
 app.Run();
