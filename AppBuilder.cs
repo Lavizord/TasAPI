@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using ConfigurationPOCO;
 using System.Text.Json;
+using AutoMapper;
+using Tas.AutoMapper.Configuration;
 
 public static class AppBuilder
 {
@@ -49,6 +51,9 @@ public static class AppBuilder
             Description = "Taking the steps you love",
             Version = "v1" });
         });
+
+        // Auto Mapper service for mapping entities to DTOs.
+        builder.Services.AddAutoMapper(typeof(MapperConfig));
 
         var app = builder.Build();
         return app;

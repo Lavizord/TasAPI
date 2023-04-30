@@ -1,8 +1,8 @@
 using Entities.Models;
 
-namespace Dtos.Models
+namespace DTOs.Models
 {
-    public class SceneDto
+    public class SceneDTO
     {
         public int _Id { get; set; }
         public int storyId { get; set; }
@@ -13,9 +13,9 @@ namespace Dtos.Models
     }
 }
 
-namespace Dtos.Models
+namespace DTOs.Models
 {
-    public class ChoiceDto
+    public class ChoiceDTO
     {
         public int _Id { get; set; }
         public int nextSceneID { get; set; }

@@ -1,10 +1,7 @@
-using Microsoft.OpenApi.Models;
 using Entities.Models;
-using Dtos.Models;
+using DTOs.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using System.Text.Json;
-//using Newtonsoft.Json;
+using AutoMapper;
 
 var MyAllowSpecificOrigins = "_CorsPolicyLocalhost"; 
 
@@ -12,14 +9,12 @@ var MyAllowSpecificOrigins = "_CorsPolicyLocalhost";
 var app = AppBuilder.GetApp(args, MyAllowSpecificOrigins);
 app = AppConfig.ConfigApp(app);
 
-// TODO: Implementar Status code?? Prolly not worth it.
-app.MapGet("/BROKEN", async (TasDB db) =>
+var mapper = app.Services.GetService<IMapper>();
+if (mapper == null)
 {
-    var list = await db.Scenes.Include("SceneEffect").ToListAsync();
-    // TODO: Serialização dá erro. Tentar corrigir.
-    //var json = JsonSerializer.Serialize(list);
-    return "FUCK OFF!!";
-});
+    throw new InvalidOperationException(
+      "Mapper not found");
+}
 
 app.MapGet("/scenes/{id}", async (int id, TasDB db) =>
     await db.Scenes.FindAsync(id)
@@ -28,7 +23,6 @@ app.MapGet("/scenes/{id}", async (int id, TasDB db) =>
             : Results.NotFound()
 );
 
-// TODO: Limitar o load as related entities a 1 level, caso contrário dá erro ao serializar.
 app.MapGet("/scenes/with/choice/{id}", async (int id, TasDB db) =>
 {
     var scene = db.Scenes
@@ -66,10 +60,11 @@ app.MapGet("/scenes/random/initial", async (TasDB db)=>
     return list[random.Next(list.Count)];
 });
 
+// Exemplo de DTO usando metodo normal.
 app.MapGet("/scenes/testdto", async (int id, TasDB db)=>
 {
     var scene = await db.Scenes.Include(s => s.OwnChoices).Select( s => 
-        new SceneDto()
+        new SceneDTO()
         {
             _Id = s._Id,
             storyId = s.storyId,
@@ -81,6 +76,13 @@ app.MapGet("/scenes/testdto", async (int id, TasDB db)=>
     return Results.Ok(scene);
 });
 
+// Exemplo DTO usando automapper.
+app.MapGet("/scenes/testemapper", async (int id, TasDB db)=>
+{
+    var scene = await db.Scenes.Include(s => s.OwnChoices)
+        .SingleOrDefaultAsync(s => s._Id == id );
+    return Results.Ok(mapper.Map<SceneDTO>(scene));
+});
 
 app.UseCors(MyAllowSpecificOrigins);
 app.Run();
