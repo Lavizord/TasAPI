@@ -60,26 +60,12 @@ app.MapGet("/scenes/random/initial", async (TasDB db)=>
     return list[random.Next(list.Count)];
 });
 
-// Exemplo de DTO usando metodo normal.
-app.MapGet("/scenes/testdto", async (int id, TasDB db)=>
-{
-    var scene = await db.Scenes.Include(s => s.OwnChoices).Select( s => 
-        new SceneDTO()
-        {
-            _Id = s._Id,
-            storyId = s.storyId,
-            type = s.Type,
-            text = s.Text,
-            //Choices = s.OwnChoices
-        }
-    ).SingleOrDefaultAsync(s => s._Id == id );
-    return Results.Ok(scene);
-});
-
 // Exemplo DTO usando automapper.
-app.MapGet("/scenes/testemapper", async (int id, TasDB db)=>
+app.MapGet("/scene/complete/from/{id}", async (int id, TasDB db)=>
 {
-    var scene = await db.Scenes.Include(s => s.OwnChoices)
+    var scene = await db.Scenes
+        .Include(s => s.OwnChoices)
+        .Include(s => s.SceneEffect)
         .SingleOrDefaultAsync(s => s._Id == id );
 
     if(scene is null)
@@ -87,7 +73,7 @@ app.MapGet("/scenes/testemapper", async (int id, TasDB db)=>
 
     return Results.Ok
     (
-        mapper.Map<Scene, SceneDTO>(scene)
+        mapper.Map<Scene, GetSceneCompleteDTO>(scene)
     );
 });
 

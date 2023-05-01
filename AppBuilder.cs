@@ -10,6 +10,7 @@ public static class AppBuilder
 {
     // Retorna WebApp com serviços configurados.
     // App deve depois ser configurada / adicionado endpoints e iniciada .Run()
+    // TODO: Ver forma de colocar estas configuraçoes de serviços em funcoes separadas.
     public static WebApplication GetApp(string[] args, string MyAllowSpecificOrigins)
     {
         var builder = WebApplication.CreateBuilder(args);
@@ -55,6 +56,10 @@ public static class AppBuilder
         // Auto Mapper service for mapping entities to DTOs.
         // Se tivermos varios perfis devem ser configurados aqui.
         builder.Services.AddAutoMapper(typeof(SceneMappConfig));
+        // Este segundo nao parece ser necessario, funciona sem ele...
+        // Vai ficar, avaliar se realmente e necessario.
+        builder.Services.AddAutoMapper(typeof(ChoiceMappConfig));
+
 
         var app = builder.Build();
         return app;
