@@ -70,7 +70,7 @@ app.MapGet("/scenes/testdto", async (int id, TasDB db)=>
             storyId = s.storyId,
             type = s.Type,
             text = s.Text,
-            Choices = s.OwnChoices
+            //Choices = s.OwnChoices
         }
     ).SingleOrDefaultAsync(s => s._Id == id );
     return Results.Ok(scene);
@@ -81,7 +81,14 @@ app.MapGet("/scenes/testemapper", async (int id, TasDB db)=>
 {
     var scene = await db.Scenes.Include(s => s.OwnChoices)
         .SingleOrDefaultAsync(s => s._Id == id );
-    return Results.Ok(mapper.Map<SceneDTO>(scene));
+
+    if(scene is null)
+        return Results.NotFound();
+
+    return Results.Ok
+    (
+        mapper.Map<Scene, SceneDTO>(scene)
+    );
 });
 
 app.UseCors(MyAllowSpecificOrigins);

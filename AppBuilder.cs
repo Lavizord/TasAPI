@@ -53,7 +53,8 @@ public static class AppBuilder
         });
 
         // Auto Mapper service for mapping entities to DTOs.
-        builder.Services.AddAutoMapper(typeof(MapperConfig));
+        // Se tivermos varios perfis devem ser configurados aqui.
+        builder.Services.AddAutoMapper(typeof(SceneMappConfig));
 
         var app = builder.Build();
         return app;

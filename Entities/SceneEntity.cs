@@ -13,8 +13,8 @@ namespace Entities.Models
         public string? Text { get; set; }
         // Aqui definimos que a Scene tem Choices. Uso da Keyword virtual: 
         // https://stackoverflow.com/questions/8542864/why-use-virtual-for-class-properties-in-entity-framework-model-definitions
-        public virtual ICollection<Choice>? OwnChoices { get; set;}
-        public virtual ICollection<Choice>? PrecidingChoices { get; set;}
+        public virtual List<Choice>? OwnChoices { get; set;}
+        public virtual List<Choice>? PrecidingChoices { get; set;}
         public virtual SceneEffect? SceneEffect { get; set;}
     }
 }
