@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using ConfigurationPOCO;
 using System.Text.Json;
+using AutoMapper;
+using Tas.AutoMapper.Configuration;
 
 public static class AppBuilder
 {
@@ -35,7 +37,7 @@ public static class AppBuilder
             options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy =>
                       {
-                          policy.WithOrigins("http://localhost:3000")
+                          policy.WithOrigins("*")
                                 .AllowAnyMethod()
                                 .AllowAnyOrigin()
                                 .AllowAnyHeader();
@@ -49,6 +51,10 @@ public static class AppBuilder
             Description = "Taking the steps you love",
             Version = "v1" });
         });
+
+        // Auto Mapper service for mapping entities to DTOs.
+        // Se tivermos varios perfis devem ser configurados aqui.
+        builder.Services.AddAutoMapper(typeof(SceneMappConfig));
 
         var app = builder.Build();
         return app;

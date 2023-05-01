@@ -1,9 +1,7 @@
-using Microsoft.OpenApi.Models;
 using Entities.Models;
+using DTOs.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using System.Text.Json;
-//using Newtonsoft.Json;
+using AutoMapper;
 
 var MyAllowSpecificOrigins = "_CorsPolicyLocalhost"; 
 
@@ -11,14 +9,12 @@ var MyAllowSpecificOrigins = "_CorsPolicyLocalhost";
 var app = AppBuilder.GetApp(args, MyAllowSpecificOrigins);
 app = AppConfig.ConfigApp(app);
 
-// TODO: Implementar Status code?? Prolly not worth it.
-app.MapGet("/BROKEN", async (TasDB db) =>
+var mapper = app.Services.GetService<IMapper>();
+if (mapper == null)
 {
-    var list = await db.Scenes.Include("SceneEffect").ToListAsync();
-    // TODO: Serialização dá erro. Tentar corrigir.
-    //var json = JsonSerializer.Serialize(list);
-    return "FUCK OFF!!";
-});
+    throw new InvalidOperationException(
+      "Mapper not found");
+}
 
 app.MapGet("/scenes/{id}", async (int id, TasDB db) =>
     await db.Scenes.FindAsync(id)
@@ -26,6 +22,16 @@ app.MapGet("/scenes/{id}", async (int id, TasDB db) =>
             ? Results.Ok(scene)
             : Results.NotFound()
 );
+
+app.MapGet("/scenes/with/choice/{id}", async (int id, TasDB db) =>
+{
+    var scene = db.Scenes
+        .Where(scene => scene._Id == id)
+        .Include(scene => scene.OwnChoices)
+        .ToList();
+
+    return Results.Ok(scene);
+});
 
 app.MapGet("/sceneseffect/{id}", async (int id, TasDB db) =>
     await db.SceneEffects.FindAsync(id)
@@ -52,6 +58,37 @@ app.MapGet("/scenes/random/initial", async (TasDB db)=>
     var random = new Random();
     var list = await db.Scenes.Where(s => s.Type == "initial").ToListAsync();
     return list[random.Next(list.Count)];
+});
+
+// Exemplo de DTO usando metodo normal.
+app.MapGet("/scenes/testdto", async (int id, TasDB db)=>
+{
+    var scene = await db.Scenes.Include(s => s.OwnChoices).Select( s => 
+        new SceneDTO()
+        {
+            _Id = s._Id,
+            storyId = s.storyId,
+            type = s.Type,
+            text = s.Text,
+            //Choices = s.OwnChoices
+        }
+    ).SingleOrDefaultAsync(s => s._Id == id );
+    return Results.Ok(scene);
+});
+
+// Exemplo DTO usando automapper.
+app.MapGet("/scenes/testemapper", async (int id, TasDB db)=>
+{
+    var scene = await db.Scenes.Include(s => s.OwnChoices)
+        .SingleOrDefaultAsync(s => s._Id == id );
+
+    if(scene is null)
+        return Results.NotFound();
+
+    return Results.Ok
+    (
+        mapper.Map<Scene, SceneDTO>(scene)
+    );
 });
 
 app.UseCors(MyAllowSpecificOrigins);
