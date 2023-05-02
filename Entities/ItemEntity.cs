@@ -12,6 +12,7 @@ namespace Entities.Models
         public bool? stackable { get; set; }
         public string? name { get; set; }
         public string? description { get; set; }     
-        public List<ItemType> ItemTypes { get; } = new();
+        public virtual List<ItemType>? ItemTypes { get; set; }
+        public virtual List<SceneItem>? SceneItems { get; set; }
     }
 }

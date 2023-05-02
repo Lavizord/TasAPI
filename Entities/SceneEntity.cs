@@ -16,5 +16,7 @@ namespace Entities.Models
         public virtual List<Choice>? OwnChoices { get; set;}
         public virtual List<Choice>? PrecidingChoices { get; set;}
         public virtual SceneEffect? SceneEffect { get; set;}
+        public virtual List<SceneItem>? SceneItems { get; set;}
+
     }
 }
