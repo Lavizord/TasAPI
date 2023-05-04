@@ -9,14 +9,23 @@ https://learn.microsoft.com/en-us/aspnet/web-api/overview/data/using-web-api-wit
    0.1. ~~Fazer DockerFile para FrontEnd / API.~~  
    0.2. ~~Fazer script para criação das scenes com DockerFile / Docker Composer~~
    0.3. Com os pontos atrás fazer um dockercontainer geral.
+   0.4. Fazer docker geral a puxar de repos master do github.
 1. Limpar lista de TODS em Program.cs e TasContext.cs
 2. ~~Ter os POSTS de criação de entidades funcionais.~~
 3. Migração das Fixtures iniciais para DB, usando endpoints acima. (Este ponto pode ser feito em paralelo ao 2).
    A. ~~Ter as Scenes importadas.~~
    B. ~~Ter os SceneEffects Importados.~~
    C. ~~Ter as Choices importadas.~~
-   D. Ter os Items importados.
 4. Imlementar items
+   A. ~~Entities, Items, Types, ItemTypes. C/ fluent API~~
+   A1. Ter os Items importados.
+   B. Implementar DTO de Items.
+   C. Implementar auto mapper de Items.
+   D. Testar fazer get de Item por ID
+   E. Implementar SceneItem, com fluent API.
+   F. Implementar DTO de SceneItem.
+   G. Implementar AutoMapper de SceneItem.
+   H. Implementar o SceneItem a ser retornado em conjunto com o Scene.
 5. Passar type da scene para a tabela de types e fazer tabela relacional.
 
 # Docker / Deply
