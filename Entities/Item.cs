@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Entities.Models.ManyToMany;
 
 namespace Entities.Models 
 {
@@ -19,9 +20,8 @@ namespace Entities.Models
         public virtual List<ItemType>? ItemTypes { get; set; }
         
         // Ligação Many to Many com a entidade de Scenes.
-        /*
         public virtual List<Scene>? Scenes { get; set; }
         public virtual List<SceneItem>? SceneItems { get; set; }
-        */
+        
     }
 }

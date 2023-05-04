@@ -1,4 +1,6 @@
 using Entities.Models;
+using Entities.Models.ManyToMany;
+
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 
@@ -16,6 +18,14 @@ namespace Entities.Models
         public DbSet<Scene> Scenes { get; set; }
         public DbSet<Choice> Choices { get; set; }
         public DbSet<SceneEffect> SceneEffects { get; set; }
+        public DbSet<Item> Items { get; set; }
+        public DbSet<Type> Types { get; set; }
+
+        // Many To Many relation tables.
+        public DbSet<ItemType> ItemTypes { get; set; }
+        public DbSet<SceneItem> SceneItems { get; set; }
+        public DbSet<SceneType> SceneTypes { get; set; }
+
 
         // TODO: Definir as relações restantes no diagrama da DB
         //  Aqui estamos a usar FluentAPI para definir as relações entre as tabelas.
@@ -23,13 +33,15 @@ namespace Entities.Models
         // mas é possível fazer o mesmo nos Models de Entidades diretamente... São escolhas.
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            DefineSceneChoide(modelBuilder);     
+            DefineSceneChoices(modelBuilder);     
             DefineSceneSceneEffect(modelBuilder);
 
-            DefineItemType(modelBuilder);
+            //Many To Many
+            DefineItemsTypes(modelBuilder);
+            DefineScenesItems(modelBuilder);
         }
 
-        private void DefineSceneChoide(ModelBuilder modelBuilder)
+        private void DefineSceneChoices(ModelBuilder modelBuilder)
         {
             // One-to-many relationship            
             modelBuilder.Entity<Scene>()
@@ -54,7 +66,7 @@ namespace Entities.Models
                 
         }
 
-        private void DefineItemType(ModelBuilder modelBuilder)
+        private void DefineItemsTypes(ModelBuilder modelBuilder)
         {
             // Many to Many
             modelBuilder.Entity<Item>()
@@ -62,5 +74,15 @@ namespace Entities.Models
                 .WithMany(t => t.Items)
                 .UsingEntity<ItemType>();
         }
+
+        private void DefineScenesItems(ModelBuilder modelBuilder)
+        {
+            // Many to Many
+            modelBuilder.Entity<Scene>()
+                .HasMany(s => s.Items)
+                .WithMany(i => i.Scenes)
+                .UsingEntity<SceneItem>();
+        }
+
     }
 }
