@@ -20,6 +20,10 @@ namespace Entities.Models
         public virtual List<Item>? Items { get; set; }
         public virtual List<SceneItem>? ItemTypes { get; set; }
         
+        // Ligação Many to Many com a entidade de Items     
+        public virtual List<Type>? Types { get; set; }
+        public virtual List<SceneType>? SceneTypes { get; set; }
+
         // TODO: Para já tem apenas um. Pensar se deve passar a ter uma Lista.
         //          Seria necessário refazer a tabela de forma a ter ou mais campos ou outra estrutura.
         public virtual SceneEffect? SceneEffect { get; set;}

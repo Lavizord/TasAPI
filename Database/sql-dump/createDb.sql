@@ -285,6 +285,7 @@ COMMIT;
 GO
 
 
+
 -- Insert dos dados
 BEGIN 
 

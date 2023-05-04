@@ -19,9 +19,8 @@ namespace Entities.Models
         public virtual List<ItemType>? ItemTypes { get; set; }
 
         // Ligação Many to Many com a entidade de Scenes.
-        /*
-        public virtual List<Scene> Scenes { get; set; }
-        public virtual List<SceneType> SceneTypes { get; set; }
-        */
+        public virtual List<Scene>? Scenes { get; set; }
+        public virtual List<SceneType>? SceneTypes { get; set; }
+        
     }
 }

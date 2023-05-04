@@ -39,6 +39,7 @@ namespace Entities.Models
             //Many To Many
             DefineItemsTypes(modelBuilder);
             DefineScenesItems(modelBuilder);
+            DefineScenesTypes(modelBuilder);
         }
 
         private void DefineSceneChoices(ModelBuilder modelBuilder)
@@ -84,5 +85,13 @@ namespace Entities.Models
                 .UsingEntity<SceneItem>();
         }
 
+        private void DefineScenesTypes(ModelBuilder modelBuilder)
+        {
+            // Many to Many
+            modelBuilder.Entity<Scene>()
+                .HasMany(s => s.Types)
+                .WithMany(t => t.Scenes)
+                .UsingEntity<SceneType>();
+        }
     }
 }
