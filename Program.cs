@@ -2,6 +2,7 @@ using Entities.Models;
 using DTOs.Scene;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using Endpoints.Groups;
 
 var MyAllowSpecificOrigins = "_CorsPolicyLocalhost"; 
 
@@ -16,49 +17,18 @@ if (mapper == null)
       "Mapper not found");
 }
 
-app.MapGet("/scenes/{id}", async (int id, TasDB db) =>
-    await db.Scenes.FindAsync(id)
-        is Scene scene
-            ? Results.Ok(scene)
-            : Results.NotFound()
-);
+app.MapGroup("/misc")
+    .Misc()
+    .WithTags("Misc");
 
-app.MapGet("/scenes/with/choice/{id}", async (int id, TasDB db) =>
-{
-    var scene = db.Scenes
-        .Where(scene => scene._Id == id)
-        .Include(scene => scene.OwnChoices)
-        .ToList();
+app.MapGroup("/scenes")
+    .Scenes()
+    .WithTags("Scenes");
 
-    return Results.Ok(scene);
-});
+app.MapGroup("/choices")
+    .Scenes()
+    .WithTags("Choices");
 
-app.MapGet("/sceneseffect/{id}", async (int id, TasDB db) =>
-    await db.SceneEffects.FindAsync(id)
-    is SceneEffect sceneEffect
-        ? Results.Ok(sceneEffect)
-        : Results.NotFound()
-);
-
-app.MapGet("/choice/{id}", async (int id, TasDB db) =>
-    await db.Choices.FindAsync(id)
-    is Choice choice
-        ? Results.Ok(choice)
-        : Results.NotFound()
-);
-
-app.MapGet("/choice/bysceneid/{id}", async (int id, TasDB db) =>
-{
-    var list = await db.Choices.Where(c => c.OwnSceneId == id).ToListAsync();
-    return Results.Ok(list);
-});
-
-app.MapGet("/scenes/random/initial", async (TasDB db)=>
-{
-    var random = new Random();
-    var list = await db.Scenes.Where(s => s.Type == "initial").ToListAsync();
-    return list[random.Next(list.Count)];
-});
 
 // Exemplo DTO usando automapper.
 app.MapGet("/scene/complete/from/{id}", async (int id, TasDB db)=>
