@@ -1,9 +1,6 @@
 using AutoMapper;
 using Entities.Models;
-using DTOs.Models;
-
-// TODO: Criar SceneEffect DTO
-// TODO: Criar config de Scene . SceneEffect.
+using DTOs.Scene;
 
 namespace Tas.AutoMapper.Configuration
 {

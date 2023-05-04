@@ -16,6 +16,8 @@ https://learn.microsoft.com/en-us/aspnet/web-api/overview/data/using-web-api-wit
    B. ~~Ter os SceneEffects Importados.~~
    C. ~~Ter as Choices importadas.~~
    D. Ter os Items importados.
+4. Imlementar items
+5. Passar type da scene para a tabela de types e fazer tabela relacional.
 
 # Docker / Deply
 
