@@ -1,6 +1,6 @@
 using Entities.Models;
 
-namespace DTOs.Models
+namespace DTOs.Scene
 {
     public class GetSceneCompleteDTO
     {

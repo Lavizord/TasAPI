@@ -9,10 +9,18 @@ namespace Entities.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int _Id { get; set; }
-        public string? type { get; set; }     
-        public List<ItemType> ItemTypes { get; } = new();
-        public List<SceneType> SceneTypes { get; } = new();
+        public int Id { get; set; }
 
+        public string? type { get; set; }
+
+        // Ligação Many to Many com a entidade de Items          
+        public virtual List<Item>? Items { get; set; }
+        public virtual List<ItemType>? ItemTypes { get; set; }
+
+        // Ligação Many to Many com a entidade de Scenes.
+        /*
+        public virtual List<Scene> Scenes { get; set; }
+        public virtual List<SceneType> SceneTypes { get; set; }
+        */
     }
 }

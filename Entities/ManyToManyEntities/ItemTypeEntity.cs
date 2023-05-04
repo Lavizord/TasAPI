@@ -5,8 +5,6 @@ namespace Entities.Models
 {
     public class ItemType
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ItemId { get; set; }
         public int TypeId { get; set; }
         public Item? Item { get; set; } 

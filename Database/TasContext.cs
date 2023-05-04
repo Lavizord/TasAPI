@@ -24,7 +24,9 @@ namespace Entities.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             DefineSceneChoide(modelBuilder);     
-            DefineSceneEffect(modelBuilder);
+            DefineSceneSceneEffect(modelBuilder);
+
+            DefineItemType(modelBuilder);
         }
 
         private void DefineSceneChoide(ModelBuilder modelBuilder)
@@ -42,14 +44,23 @@ namespace Entities.Models
                 .HasForeignKey(c => c.OwnSceneId);
         }
 
-        private void DefineSceneEffect(ModelBuilder modelBuilder)
+        private void DefineSceneSceneEffect(ModelBuilder modelBuilder)
         {
             // One to One relationship
-            /*modelBuilder.Entity<Scene>()
+            modelBuilder.Entity<Scene>()
                 .HasOne<SceneEffect>(s => s.SceneEffect)
                 .WithOne(sf => sf.Scene)
                 .HasForeignKey<SceneEffect>(sf => sf.sceneId);
-                */
+                
+        }
+
+        private void DefineItemType(ModelBuilder modelBuilder)
+        {
+            // Many to Many
+            modelBuilder.Entity<Item>()
+                .HasMany(i => i.Types)
+                .WithMany(t => t.Items)
+                .UsingEntity<ItemType>();
         }
     }
 }

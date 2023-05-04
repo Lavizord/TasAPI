@@ -1,5 +1,5 @@
 using Entities.Models;
-using DTOs.Models;
+using DTOs.Scene;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 
