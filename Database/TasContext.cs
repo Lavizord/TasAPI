@@ -33,10 +33,11 @@ namespace Entities.Models
         // mas é possível fazer o mesmo nos Models de Entidades diretamente... São escolhas.
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Some of these have more than 1 relation defined.
             DefineSceneChoices(modelBuilder);     
             DefineSceneSceneEffect(modelBuilder);
 
-            //Many To Many
+            //  Many To Many, single relation defined.
             DefineItemsTypes(modelBuilder);
             DefineScenesItems(modelBuilder);
             DefineScenesTypes(modelBuilder);
