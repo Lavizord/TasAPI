@@ -30,6 +30,11 @@ app.MapGroup("/choices")
     .WithTags("Choices");
 
 
+app.MapGroup("/items")
+    .Items()
+    .WithTags("Items");
+    
+
 // Exemplo DTO usando automapper.
 app.MapGet("/scene/complete/from/{id}", async (int id, TasDB db)=>
 {

@@ -88,5 +88,15 @@ namespace Endpoints.Groups
             return group;
         }
         
+        public static RouteGroupBuilder Items(this RouteGroupBuilder group)
+        {
+            group.MapGet("/item/{id}", async (int id, TasDB db) => 
+                await db.Items.FindAsync(id)
+                is Item item
+                    ? Results.Ok(item)
+                    : Results.NotFound()
+            );
+            return group;
+        }
     }
 }
