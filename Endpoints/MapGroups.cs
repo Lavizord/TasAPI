@@ -16,7 +16,7 @@ namespace Endpoints.Groups
         public static RouteGroupBuilder Scenes(this RouteGroupBuilder group)
         {
             // TODO: Este endpoint vai-se manter.
-            //          Mas deverá usar o DTO. Necessário fazer dependencey injection do mapper.
+            //          Mas deverá usar o DTO. Necessário fazer dependency injection do mapper (sem dependency injection).
             group.MapGet("/scenes/random/initial", async (TasDB db)=>
             {
                 var random = new Random();
@@ -25,7 +25,8 @@ namespace Endpoints.Groups
             });
             
             // Exemplo DTO usando automapper.
-            // TODO: Meter isto funcional. Necessário fazer dependencey injection do mapper.
+            // TODO: Meter isto funcional. Necessário fazer dependency injection do mapper.
+            //                              Exemplo funcional no program.cs desta app (sem dependency injection).
             /* 
             group.MapGet("/scene/complete/from/{id}", async (int id, TasDB db)=>
             {
