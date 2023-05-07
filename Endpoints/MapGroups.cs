@@ -72,6 +72,8 @@ namespace Endpoints.Groups
 
         public static RouteGroupBuilder Choices(this RouteGroupBuilder group)
         {
+            //TODO: Avaliar se faz sentido termos este endpoint.
+            //TODO: Avaliar se devemos retornar obejtos filhos neste endpoint.
             group.MapGet("{id}", async (int id, TasDB db) =>
                 await db.Choices.FindAsync(id)
                 is Choice choice
@@ -79,6 +81,8 @@ namespace Endpoints.Groups
                     : Results.NotFound()
             );
 
+            //TODO: Avaliar se faz sentido termos este endpoint.
+            //TODO: Avaliar se devemos retornar obejtos filhos neste endpoint.
             group.MapGet("/byscene/{id}", async (int id, TasDB db) =>
             {
                 var list = await db.Choices.Where(c => c.OwnSceneId == id).ToListAsync();
