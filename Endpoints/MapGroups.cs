@@ -15,8 +15,6 @@ namespace Endpoints.Groups
 
         public static RouteGroupBuilder Scenes(this RouteGroupBuilder group, IMapper mapper)
         {
-            // TODO: Este endpoint vai-se manter.
-            //          Mas deverá usar o DTO. 
             group.MapGet("/scenes/random/initial", async (TasDB db)=>
             {
                 var random = new Random();

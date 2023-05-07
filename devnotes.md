@@ -16,9 +16,9 @@ https://learn.microsoft.com/en-us/aspnet/web-api/overview/data/using-web-api-wit
    A. ~~Ter as Scenes importadas.~~
    B. ~~Ter os SceneEffects Importados.~~
    C. ~~Ter as Choices importadas.~~
+   E. Ter os Items importados.
 4. Imlementar items
    A. ~~Entities, Items, Types, ItemTypes. C/ fluent API~~
-   A1. Ter os Items importados.
    B. Implementar DTO de Items.
    C. Implementar auto mapper de Items.
    D. Testar fazer get de Item por ID
