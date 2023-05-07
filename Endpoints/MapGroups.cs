@@ -23,7 +23,7 @@ namespace Endpoints.Groups
             );
 
             // TODO: Rever este endpoint.
-            group.MapGet("/scenes/with/choice/{id}", async (int id, TasDB db) =>
+            group.MapGet("/scenes/with/c/{id}", async (int id, TasDB db) =>
             {
                 var scene = db.Scenes
                     .Where(scene => scene._Id == id)
