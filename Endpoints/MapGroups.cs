@@ -15,32 +15,8 @@ namespace Endpoints.Groups
 
         public static RouteGroupBuilder Scenes(this RouteGroupBuilder group)
         {
-            group.MapGet("/scenes/{id}", async (int id, TasDB db) =>
-                await db.Scenes.FindAsync(id)
-                    is Scene scene
-                        ? Results.Ok(scene)
-                        : Results.NotFound()
-            );
-
-            // TODO: Rever este endpoint.
-            group.MapGet("/scenes/with/c/{id}", async (int id, TasDB db) =>
-            {
-                var scene = db.Scenes
-                    .Where(scene => scene._Id == id)
-                    .Include(scene => scene.OwnChoices)
-                    .ToList();
-
-                return Results.Ok(scene);
-            });
-
-            // TODO: Avaliar se este endpoint deve ser mantido.
-            group.MapGet("/sceneseffect/{id}", async (int id, TasDB db) =>
-                await db.SceneEffects.FindAsync(id)
-                is SceneEffect sceneEffect
-                    ? Results.Ok(sceneEffect)
-                    : Results.NotFound()
-            );
-
+            // TODO: Este endpoint vai-se manter.
+            //          Mas deverá usar o DTO. Necessário fazer dependencey injection do mapper.
             group.MapGet("/scenes/random/initial", async (TasDB db)=>
             {
                 var random = new Random();
@@ -49,7 +25,7 @@ namespace Endpoints.Groups
             });
             
             // Exemplo DTO usando automapper.
-            // TODO: Meter isto funcional. Necessário fazer dependencey inejction do mapper.
+            // TODO: Meter isto funcional. Necessário fazer dependencey injection do mapper.
             /* 
             group.MapGet("/scene/complete/from/{id}", async (int id, TasDB db)=>
             {
