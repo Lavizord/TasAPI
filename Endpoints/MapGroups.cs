@@ -15,7 +15,7 @@ namespace Endpoints.Groups
 
         public static RouteGroupBuilder Scenes(this RouteGroupBuilder group, IMapper mapper)
         {
-            group.MapGet("/scenes/random/initial", async (TasDB db)=>
+            group.MapGet("/initial/random", async (TasDB db)=>
             {
                 var random = new Random();
                 var list = await db.Scenes
@@ -35,7 +35,7 @@ namespace Endpoints.Groups
                 );
             });
                        
-            group.MapGet("/scene/complete/from/{id}", async (int id, TasDB db)=>
+            group.MapGet("/complete/{id}", async (int id, TasDB db)=>
             {
                 var scene = await db.Scenes
                     .Include(s => s.OwnChoices)
