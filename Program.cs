@@ -26,7 +26,7 @@ app.MapGroup("/scenes")
     .WithTags("Scenes");
 
 app.MapGroup("/choices")
-    .Scenes()
+    .Choices()
     .WithTags("Choices");
 
 

@@ -15,32 +15,8 @@ namespace Endpoints.Groups
 
         public static RouteGroupBuilder Scenes(this RouteGroupBuilder group)
         {
-            group.MapGet("/scenes/{id}", async (int id, TasDB db) =>
-                await db.Scenes.FindAsync(id)
-                    is Scene scene
-                        ? Results.Ok(scene)
-                        : Results.NotFound()
-            );
-
-            // TODO: Rever este endpoint.
-            group.MapGet("/scenes/with/choice/{id}", async (int id, TasDB db) =>
-            {
-                var scene = db.Scenes
-                    .Where(scene => scene._Id == id)
-                    .Include(scene => scene.OwnChoices)
-                    .ToList();
-
-                return Results.Ok(scene);
-            });
-
-            // TODO: Avaliar se este endpoint deve ser mantido.
-            group.MapGet("/sceneseffect/{id}", async (int id, TasDB db) =>
-                await db.SceneEffects.FindAsync(id)
-                is SceneEffect sceneEffect
-                    ? Results.Ok(sceneEffect)
-                    : Results.NotFound()
-            );
-
+            // TODO: Este endpoint vai-se manter.
+            //          Mas deverá usar o DTO. Necessário fazer dependency injection do mapper (sem dependency injection).
             group.MapGet("/scenes/random/initial", async (TasDB db)=>
             {
                 var random = new Random();
@@ -49,7 +25,8 @@ namespace Endpoints.Groups
             });
             
             // Exemplo DTO usando automapper.
-            // TODO: Meter isto funcional. Necessário fazer dependencey inejction do mapper.
+            // TODO: Meter isto funcional. Necessário fazer dependency injection do mapper.
+            //                              Exemplo funcional no program.cs desta app (sem dependency injection).
             /* 
             group.MapGet("/scene/complete/from/{id}", async (int id, TasDB db)=>
             {
@@ -72,14 +49,18 @@ namespace Endpoints.Groups
 
         public static RouteGroupBuilder Choices(this RouteGroupBuilder group)
         {
-            group.MapGet("/choice/{id}", async (int id, TasDB db) =>
+            //TODO: Avaliar se faz sentido termos este endpoint.
+            //TODO: Avaliar se devemos retornar obejtos filhos neste endpoint.
+            group.MapGet("{id}", async (int id, TasDB db) =>
                 await db.Choices.FindAsync(id)
                 is Choice choice
                     ? Results.Ok(choice)
                     : Results.NotFound()
             );
 
-            group.MapGet("/choice/bysceneid/{id}", async (int id, TasDB db) =>
+            //TODO: Avaliar se faz sentido termos este endpoint.
+            //TODO: Avaliar se devemos retornar obejtos filhos neste endpoint.
+            group.MapGet("/byscene/{id}", async (int id, TasDB db) =>
             {
                 var list = await db.Choices.Where(c => c.OwnSceneId == id).ToListAsync();
                 return Results.Ok(list);
