@@ -1,4 +1,6 @@
 using Entities.Models;
+using DTOs.Type;
+using DTOs.Item;
 
 namespace DTOs.Scene
 {
@@ -11,7 +13,7 @@ namespace DTOs.Scene
 
         public List<GetChoicefromSceneDTO>? Choices { get; set; }
         public GetSceneEffectFromSceneDTO? SceneEffect { get; set; }
-
+        public List<ItemDTO> Items { get; set; }
     }
 
     public class GetChoicefromSceneDTO
