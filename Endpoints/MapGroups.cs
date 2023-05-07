@@ -72,14 +72,14 @@ namespace Endpoints.Groups
 
         public static RouteGroupBuilder Choices(this RouteGroupBuilder group)
         {
-            group.MapGet("/choice/{id}", async (int id, TasDB db) =>
+            group.MapGet("{id}", async (int id, TasDB db) =>
                 await db.Choices.FindAsync(id)
                 is Choice choice
                     ? Results.Ok(choice)
                     : Results.NotFound()
             );
 
-            group.MapGet("/choice/bysceneid/{id}", async (int id, TasDB db) =>
+            group.MapGet("/byscene/{id}", async (int id, TasDB db) =>
             {
                 var list = await db.Choices.Where(c => c.OwnSceneId == id).ToListAsync();
                 return Results.Ok(list);
