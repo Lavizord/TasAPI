@@ -13,21 +13,30 @@ namespace Endpoints.Groups
             return group;
         }
 
-        public static RouteGroupBuilder Scenes(this RouteGroupBuilder group)
+        public static RouteGroupBuilder Scenes(this RouteGroupBuilder group, IMapper mapper)
         {
             // TODO: Este endpoint vai-se manter.
-            //          Mas deverá usar o DTO. Necessário fazer dependency injection do mapper (sem dependency injection).
+            //          Mas deverá usar o DTO. 
             group.MapGet("/scenes/random/initial", async (TasDB db)=>
             {
                 var random = new Random();
-                var list = await db.Scenes.Where(s => s.Type == "initial").ToListAsync();
-                return list[random.Next(list.Count)];
+                var list = await db.Scenes
+                    .Where(s => s.Type == "initial")
+                    .Include(s => s.OwnChoices)
+                    .Include(s => s.SceneEffect)
+                    .ToListAsync();
+                
+                var scene = list[random.Next(list.Count)];
+                
+                if(scene is null)
+                    return Results.NotFound();
+
+                return Results.Ok
+                (
+                    mapper.Map<Scene, GetSceneCompleteDTO>(scene)
+                );
             });
-            
-            // Exemplo DTO usando automapper.
-            // TODO: Meter isto funcional. Necessário fazer dependency injection do mapper.
-            //                              Exemplo funcional no program.cs desta app (sem dependency injection).
-            /* 
+                       
             group.MapGet("/scene/complete/from/{id}", async (int id, TasDB db)=>
             {
                 var scene = await db.Scenes
@@ -43,11 +52,11 @@ namespace Endpoints.Groups
                     mapper.Map<Scene, GetSceneCompleteDTO>(scene)
                 );
             });
-            */
+            
             return group; 
         }
 
-        public static RouteGroupBuilder Choices(this RouteGroupBuilder group)
+        public static RouteGroupBuilder Choices(this RouteGroupBuilder group, IMapper mapper)
         {
             //TODO: Avaliar se faz sentido termos este endpoint.
             //TODO: Avaliar se devemos retornar obejtos filhos neste endpoint.
@@ -69,7 +78,7 @@ namespace Endpoints.Groups
             return group;
         }
         
-        public static RouteGroupBuilder Items(this RouteGroupBuilder group)
+        public static RouteGroupBuilder Items(this RouteGroupBuilder group, IMapper mapper)
         {
             group.MapGet("/item/{id}", async (int id, TasDB db) => 
                 await db.Items.FindAsync(id)

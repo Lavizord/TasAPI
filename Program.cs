@@ -22,35 +22,17 @@ app.MapGroup("/misc")
     .WithTags("Misc");
 
 app.MapGroup("/scenes")
-    .Scenes()
+    .Scenes(mapper)
     .WithTags("Scenes");
 
 app.MapGroup("/choices")
-    .Choices()
+    .Choices(mapper)
     .WithTags("Choices");
 
-
 app.MapGroup("/items")
-    .Items()
+    .Items(mapper)
     .WithTags("Items");
     
-
-// Exemplo DTO usando automapper.
-app.MapGet("/scene/complete/from/{id}", async (int id, TasDB db)=>
-{
-    var scene = await db.Scenes
-        .Include(s => s.OwnChoices)
-        .Include(s => s.SceneEffect)
-        .SingleOrDefaultAsync(s => s._Id == id );
-
-    if(scene is null)
-        return Results.NotFound();
-
-    return Results.Ok
-    (
-        mapper.Map<Scene, GetSceneCompleteDTO>(scene)
-    );
-});
-
+    
 app.UseCors(MyAllowSpecificOrigins);
 app.Run();
