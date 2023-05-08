@@ -537,4 +537,26 @@ BEGIN
             "Take the path through the forest."
         )
     END
+    -- Insert dos Items
+    BEGIN
+        INSERT INTO TakeAStep01.dbo.Item(Id, [unique], stackable, name, description)
+        VALUES 
+        (
+            1,
+            1,
+            0,
+            'This is a Item name.',
+            'This is the item description.'
+        )
+    END
+    -- Insert da ligaçao entre Scenes e os items.
+    BEGIN
+        INSERT INTO TakeAStep01.dbo.SceneItem(SceneId, ItemId, Scene_Id)
+        VALUES 
+        (
+            1,
+            1,
+            1
+        )
+    END
 END

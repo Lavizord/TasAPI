@@ -40,6 +40,7 @@ namespace Endpoints.Groups
                 var scene = await db.Scenes
                     .Include(s => s.OwnChoices)
                     .Include(s => s.SceneEffect)
+                    .Include(s => s.Items)
                     .SingleOrDefaultAsync(s => s._Id == id );
 
                 if(scene is null)
