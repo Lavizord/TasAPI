@@ -41,7 +41,7 @@ namespace Endpoints.Groups
                     .Include(s => s.OwnChoices)
                     .Include(s => s.SceneEffect)
                     .Include(s => s.Items)
-                    .SingleOrDefaultAsync(s => s._Id == id );
+                    .SingleOrDefaultAsync(s => s.Id == id );
 
                 if(scene is null)
                     return Results.NotFound();

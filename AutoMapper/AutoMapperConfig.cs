@@ -9,7 +9,7 @@ namespace Tas.AutoMapper.Configuration
         public SceneMappConfig()
         {   
             CreateMap<Scene, GetSceneCompleteDTO>()
-                .ForMember(dest => dest._Id, opt => opt.MapFrom(src => src._Id))
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.storyId, opt => opt.MapFrom(src => src.storyId))
                 .ForMember(dest => dest.text, opt => opt.MapFrom(src => src.Text))
                 .ForMember(dest => dest.Choices, opt => opt.MapFrom(src => src.OwnChoices))

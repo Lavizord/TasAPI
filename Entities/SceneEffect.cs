@@ -7,7 +7,7 @@ namespace Entities.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int _Id { get; set; }
+        public int Id { get; set; }
         public int sceneId { get; set; }
         public int? hpChange { get; set; }
         public int? goldChange { get; set; }

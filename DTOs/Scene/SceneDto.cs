@@ -6,7 +6,7 @@ namespace DTOs.Scene
 {
     public class GetSceneCompleteDTO
     {
-        public int _Id { get; set; }
+        public int Id { get; set; }
         public int storyId { get; set; }
         public string? type { get; set; }
         public string? text { get; set; }

@@ -83,7 +83,7 @@ namespace Entities.Models
             modelBuilder.Entity<Scene>()
                 .HasMany(s => s.Items)
                 .WithMany(i => i.Scenes)
-                .UsingEntity<SceneItem>();
+                .UsingEntity<SceneItem>();          
         }
 
         private void DefineScenesTypes(ModelBuilder modelBuilder)

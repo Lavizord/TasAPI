@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace tasApi.Migrations
 {
     [DbContext(typeof(TasDB))]
-    [Migration("20230503224357_02")]
-    partial class _02
+    [Migration("20230508114034_01")]
+    partial class _01
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,7 +27,7 @@ namespace tasApi.Migrations
 
             modelBuilder.Entity("Entities.Models.Choice", b =>
                 {
-                    b.Property<int>("_Id")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.Property<int?>("NextSceneId")
@@ -39,7 +39,7 @@ namespace tasApi.Migrations
                     b.Property<string>("Text")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("_Id");
+                    b.HasKey("Id");
 
                     b.HasIndex("NextSceneId");
 
@@ -67,10 +67,10 @@ namespace tasApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Item");
+                    b.ToTable("Items");
                 });
 
-            modelBuilder.Entity("Entities.Models.ItemType", b =>
+            modelBuilder.Entity("Entities.Models.ManyToMany.ItemType", b =>
                 {
                     b.Property<int>("ItemId")
                         .HasColumnType("int");
@@ -82,12 +82,42 @@ namespace tasApi.Migrations
 
                     b.HasIndex("TypeId");
 
-                    b.ToTable("ItemType");
+                    b.ToTable("ItemTypes");
+                });
+
+            modelBuilder.Entity("Entities.Models.ManyToMany.SceneItem", b =>
+                {
+                    b.Property<int>("ItemId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SceneId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ItemId", "SceneId");
+
+                    b.HasIndex("SceneId");
+
+                    b.ToTable("SceneItems");
+                });
+
+            modelBuilder.Entity("Entities.Models.ManyToMany.SceneType", b =>
+                {
+                    b.Property<int>("SceneId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SceneId", "TypeId");
+
+                    b.HasIndex("TypeId");
+
+                    b.ToTable("SceneTypes");
                 });
 
             modelBuilder.Entity("Entities.Models.Scene", b =>
                 {
-                    b.Property<int>("_Id")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.Property<string>("Text")
@@ -99,14 +129,14 @@ namespace tasApi.Migrations
                     b.Property<int>("storyId")
                         .HasColumnType("int");
 
-                    b.HasKey("_Id");
+                    b.HasKey("Id");
 
                     b.ToTable("Scenes");
                 });
 
             modelBuilder.Entity("Entities.Models.SceneEffect", b =>
                 {
-                    b.Property<int>("_Id")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.Property<int?>("goldChange")
@@ -118,32 +148,12 @@ namespace tasApi.Migrations
                     b.Property<int>("sceneId")
                         .HasColumnType("int");
 
-                    b.HasKey("_Id");
+                    b.HasKey("Id");
 
                     b.HasIndex("sceneId")
                         .IsUnique();
 
                     b.ToTable("SceneEffects");
-                });
-
-            modelBuilder.Entity("Entities.Models.SceneItem", b =>
-                {
-                    b.Property<int>("SceneId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ItemId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Scene_Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("SceneId");
-
-                    b.HasIndex("ItemId");
-
-                    b.HasIndex("Scene_Id");
-
-                    b.ToTable("SceneItem");
                 });
 
             modelBuilder.Entity("Entities.Models.Type", b =>
@@ -156,7 +166,7 @@ namespace tasApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Type");
+                    b.ToTable("Types");
                 });
 
             modelBuilder.Entity("Entities.Models.Choice", b =>
@@ -174,7 +184,7 @@ namespace tasApi.Migrations
                     b.Navigation("OwnScene");
                 });
 
-            modelBuilder.Entity("Entities.Models.ItemType", b =>
+            modelBuilder.Entity("Entities.Models.ManyToMany.ItemType", b =>
                 {
                     b.HasOne("Entities.Models.Item", "Item")
                         .WithMany("ItemTypes")
@@ -193,6 +203,44 @@ namespace tasApi.Migrations
                     b.Navigation("Type");
                 });
 
+            modelBuilder.Entity("Entities.Models.ManyToMany.SceneItem", b =>
+                {
+                    b.HasOne("Entities.Models.Item", "Item")
+                        .WithMany("SceneItems")
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Models.Scene", "Scene")
+                        .WithMany("ItemTypes")
+                        .HasForeignKey("SceneId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Item");
+
+                    b.Navigation("Scene");
+                });
+
+            modelBuilder.Entity("Entities.Models.ManyToMany.SceneType", b =>
+                {
+                    b.HasOne("Entities.Models.Scene", "Scene")
+                        .WithMany("SceneTypes")
+                        .HasForeignKey("SceneId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Models.Type", "Type")
+                        .WithMany("SceneTypes")
+                        .HasForeignKey("TypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Scene");
+
+                    b.Navigation("Type");
+                });
+
             modelBuilder.Entity("Entities.Models.SceneEffect", b =>
                 {
                     b.HasOne("Entities.Models.Scene", "Scene")
@@ -204,44 +252,31 @@ namespace tasApi.Migrations
                     b.Navigation("Scene");
                 });
 
-            modelBuilder.Entity("Entities.Models.SceneItem", b =>
-                {
-                    b.HasOne("Entities.Models.Item", "Item")
-                        .WithMany()
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Models.Scene", "Scene")
-                        .WithMany("SceneItems")
-                        .HasForeignKey("Scene_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Item");
-
-                    b.Navigation("Scene");
-                });
-
             modelBuilder.Entity("Entities.Models.Item", b =>
                 {
                     b.Navigation("ItemTypes");
+
+                    b.Navigation("SceneItems");
                 });
 
             modelBuilder.Entity("Entities.Models.Scene", b =>
                 {
+                    b.Navigation("ItemTypes");
+
                     b.Navigation("OwnChoices");
 
                     b.Navigation("PrecidingChoices");
 
                     b.Navigation("SceneEffect");
 
-                    b.Navigation("SceneItems");
+                    b.Navigation("SceneTypes");
                 });
 
             modelBuilder.Entity("Entities.Models.Type", b =>
                 {
                     b.Navigation("ItemTypes");
+
+                    b.Navigation("SceneTypes");
                 });
 #pragma warning restore 612, 618
         }
