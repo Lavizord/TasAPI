@@ -1,6 +1,7 @@
 using AutoMapper;
 using Entities.Models;
 using DTOs.Scene;
+using DTOs.Item;
 
 namespace Tas.AutoMapper.Configuration
 {
@@ -39,6 +40,14 @@ namespace Tas.AutoMapper.Configuration
                 .ForMember(dest => dest.goldChange, opt => opt.MapFrom(src => src.goldChange))
                 .ForMember(dest => dest.hpChange, opt => opt.MapFrom(src => src.hpChange))
                 ;
+        }
+    }
+
+    public class ItemMappConfig : Profile
+    {
+        public ItemMappConfig()
+        {
+            CreateMap<Item, ItemDTO>();
         }
     }
 }

@@ -286,7 +286,7 @@ BEGIN
 
     -- Insert as Scenes
     BEGIN
-        INSERT INTO TakeAStep01.dbo.Scenes (_Id, storyId, Text, Type)
+        INSERT INTO TakeAStep01.dbo.Scenes (Id, storyId, Text, Type)
         VALUES 
         (
             1, 
@@ -382,7 +382,7 @@ BEGIN
 
     -- Insert das SceneEffects
     BEGIN
-        INSERT INTO TakeAStep01.dbo.SceneEffects(_Id, sceneId, goldChange, hpChange)
+        INSERT INTO TakeAStep01.dbo.SceneEffects(Id, sceneId, goldChange, hpChange)
         VALUES
         (
             1, 1, 0, 0
@@ -433,7 +433,7 @@ BEGIN
 
     -- Insert das Choices
     BEGIN
-        INSERT INTO TakeAStep01.dbo.Choices(_Id, OwnSceneId, NextSceneId, Text)
+        INSERT INTO TakeAStep01.dbo.Choices(Id, OwnSceneId, NextSceneId, Text)
         VALUES 
         (
             1,
@@ -534,7 +534,7 @@ BEGIN
     END
     -- Insert dos Items
     BEGIN
-        INSERT INTO TakeAStep01.dbo.Item(Id, [unique], stackable, name, description)
+        INSERT INTO TakeAStep01.dbo.Items(Id, [unique], stackable, name, description)
         VALUES 
         (
             1,
@@ -546,10 +546,9 @@ BEGIN
     END
     -- Insert da ligaçao entre Scenes e os items.
     BEGIN
-        INSERT INTO TakeAStep01.dbo.SceneItem(SceneId, ItemId, Scene_Id)
+        INSERT INTO TakeAStep01.dbo.SceneItems(SceneId, ItemId)
         VALUES 
         (
-            1,
             1,
             1
         )
