@@ -29,8 +29,9 @@ https://learn.microsoft.com/en-us/aspnet/web-api/overview/data/using-web-api-wit
    G. ~~Implementar AutoMapper de SceneItem.~~
    H. ~~Implementar o SceneItem a ser retornado em conjunto com o Scene.~~
    I. Reavaliar endpoints atuais. Adaptar / apagar.
-   J. Criar Endpoints para Items.
-   L. Criar group endpoints para Items
+   J. Simplificar os types retornados (TypeDTO? Vai ter que ser para os Items e para as Scenes, bem como os outros types que possamos ter.), não é necessário retornar o id, deveria de seruma lista de strings simples.
+   L. Criar Endpoints para Items.
+   M. Criar group endpoints para Items
 
 5. Passar type da scene para a tabela de types e fazer tabela relacional.
 
