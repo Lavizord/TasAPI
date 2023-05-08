@@ -7,7 +7,7 @@ namespace Entities.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int _Id { get; set; }
+        public int Id { get; set; }
         public int? OwnSceneId { get; set; }
         public int? NextSceneId { get; set; }
         public string? Text { get; set; }

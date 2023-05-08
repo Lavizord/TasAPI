@@ -22,6 +22,8 @@ namespace Endpoints.Groups
                     .Where(s => s.Type == "initial")
                     .Include(s => s.OwnChoices)
                     .Include(s => s.SceneEffect)
+                    .Include(s => s.Items)
+                    .ThenInclude(i => i.Types)
                     .ToListAsync();
                 
                 var scene = list[random.Next(list.Count)];
@@ -37,10 +39,13 @@ namespace Endpoints.Groups
                        
             group.MapGet("/complete/{id}", async (int id, TasDB db)=>
             {
+                // I know, yellow lines, but it works.
                 var scene = await db.Scenes
                     .Include(s => s.OwnChoices)
                     .Include(s => s.SceneEffect)
-                    .SingleOrDefaultAsync(s => s._Id == id );
+                    .Include(s => s.Items)
+                    .ThenInclude(i => i.Types)
+                    .SingleOrDefaultAsync(s => s.Id == id );
 
                 if(scene is null)
                     return Results.NotFound();

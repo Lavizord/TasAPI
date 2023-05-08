@@ -8,7 +8,7 @@ namespace Entities.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int _Id { get; set; }
+        public int Id { get; set; }
         public int storyId { get; set; }
         public string? Type { get; set; }
         public string? Text { get; set; }

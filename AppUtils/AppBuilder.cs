@@ -2,7 +2,6 @@ using Entities.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using ConfigurationPOCO;
-using System.Text.Json;
 using AutoMapper;
 using Tas.AutoMapper.Configuration;
 
@@ -59,6 +58,9 @@ public static class AppBuilder
         // Este segundo nao parece ser necessario, funciona sem ele...
         // Vai ficar, avaliar se realmente e necessario.
         builder.Services.AddAutoMapper(typeof(ChoiceMappConfig));
+        builder.Services.AddAutoMapper(typeof(SceneEffectMappConfig));
+        builder.Services.AddAutoMapper(typeof(ItemMappConfig));
+        builder.Services.AddAutoMapper(typeof(TypeMappConfig));
 
 
         var app = builder.Build();
