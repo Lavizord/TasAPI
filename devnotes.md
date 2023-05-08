@@ -16,19 +16,22 @@ https://learn.microsoft.com/en-us/aspnet/web-api/overview/data/using-web-api-wit
    A. ~~Ter as Scenes importadas.~~
    B. ~~Ter os SceneEffects Importados.~~
    C. ~~Ter as Choices importadas.~~
-   E. Ter os Items importados.
+   E. ~~Ter os Items importados.~~
 4. Imlementar items
    A. ~~Entities, Items, Types, ItemTypes. C/ fluent API~~
-   B. Implementar DTO de Items.
-   C. Implementar auto mapper de Items.
+   B. ~~Implementar DTO de Items.~~
+   C. ~~Implementar auto mapper de Items.~~
+   NOTA: Está a funcionar nos endpoints das scenes, não sei se requer mais código para o outro endpoint.
+
    D. Testar fazer get de Item por ID
    E. ~~Implementar SceneItem, com fluent API.~~
-   F. Implementar DTO de SceneItem.
-   G. Implementar AutoMapper de SceneItem.
-   H. Implementar o SceneItem a ser retornado em conjunto com o Scene.
+   F. ~~Implementar DTO de SceneItem~~.
+   G. ~~Implementar AutoMapper de SceneItem.~~
+   H. ~~Implementar o SceneItem a ser retornado em conjunto com o Scene.~~
    I. Reavaliar endpoints atuais. Adaptar / apagar.
    J. Criar Endpoints para Items.
    L. Criar group endpoints para Items
+
 5. Passar type da scene para a tabela de types e fazer tabela relacional.
 
 # Docker / Deply
