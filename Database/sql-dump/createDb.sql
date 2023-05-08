@@ -553,4 +553,27 @@ BEGIN
             1
         )
     END
+    -- Insert dos Types
+    BEGIN
+        INSERT INTO TakeAStep01.dbo.Types(Id, type)
+        VALUES
+        (
+            1,
+            'quest'
+        ),
+        (
+            2,
+            'initial'
+        )
+    END
+    -- Insert dos ItemTypes (Tabela relacional)
+    BEGIN
+        INSERT INTO TakeAStep01.dbo.ItemTypes(ItemId, TypeId)
+        VALUES
+        (
+            1,
+            1
+        )
+    END
+
 END

@@ -2,6 +2,7 @@ using AutoMapper;
 using Entities.Models;
 using DTOs.Scene;
 using DTOs.Item;
+using DTOs.Type;
 
 namespace Tas.AutoMapper.Configuration
 {
@@ -47,7 +48,16 @@ namespace Tas.AutoMapper.Configuration
     {
         public ItemMappConfig()
         {
-            CreateMap<Item, ItemDTO>();
+            CreateMap<Item, ItemDTO>()
+                .ForMember(dest => dest.Types, opt => opt.MapFrom(src => src.Types));
+        }
+    }
+
+    public class  TypeMappConfig: Profile
+    {
+        public TypeMappConfig()
+        {
+            CreateMap<Entities.Models.Type, TypeDTO>();
         }
     }
 }

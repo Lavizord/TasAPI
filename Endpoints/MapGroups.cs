@@ -37,10 +37,12 @@ namespace Endpoints.Groups
                        
             group.MapGet("/complete/{id}", async (int id, TasDB db)=>
             {
+                // I know, yellow lines, but it works.
                 var scene = await db.Scenes
                     .Include(s => s.OwnChoices)
                     .Include(s => s.SceneEffect)
                     .Include(s => s.Items)
+                    .ThenInclude(i => i.Types)
                     .SingleOrDefaultAsync(s => s.Id == id );
 
                 if(scene is null)

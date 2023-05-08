@@ -60,6 +60,7 @@ public static class AppBuilder
         builder.Services.AddAutoMapper(typeof(ChoiceMappConfig));
         builder.Services.AddAutoMapper(typeof(SceneEffectMappConfig));
         builder.Services.AddAutoMapper(typeof(ItemMappConfig));
+        builder.Services.AddAutoMapper(typeof(TypeMappConfig));
 
 
         var app = builder.Build();
