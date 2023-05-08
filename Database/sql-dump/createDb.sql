@@ -534,7 +534,14 @@ BEGIN
     END
     -- Insert dos Items
     BEGIN
-        INSERT INTO TakeAStep01.dbo.Items(Id, [unique], stackable, name, description)
+        INSERT INTO TakeAStep01.dbo.Items
+        (
+            Id,
+            [unique],
+            stackable,
+            name,
+            description
+        )
         VALUES 
         (
             1,
@@ -542,15 +549,27 @@ BEGIN
             0,
             'This is a Item name.',
             'This is the item description.'
-        )
-    END
-    -- Insert da ligaçao entre Scenes e os items.
-    BEGIN
-        INSERT INTO TakeAStep01.dbo.SceneItems(SceneId, ItemId)
-        VALUES 
+        ),
         (
+            2,
+            0,
+            0,
+            'Cloth outfit',
+            'Simple outfit, made of cloth.'
+        ),
+        (
+            3,
             1,
-            1
+            0,
+            'Fists',
+            'My  bare fists.'
+        ),
+        (
+            4,
+            0,
+            0,
+            'Raft',
+            'Simple raft, it is simple'
         )
     END
     -- Insert dos Types
@@ -559,11 +578,23 @@ BEGIN
         VALUES
         (
             1,
-            'quest'
+            'initial'
         ),
         (
             2,
-            'initial'
+            'quest'
+        ),
+        (
+            3,
+            'weapon'
+        ),
+        (
+            4,
+            'armor'
+        ),
+        (
+            5,
+            'utility'
         )
     END
     -- Insert dos ItemTypes (Tabela relacional)
@@ -573,7 +604,72 @@ BEGIN
         (
             1,
             1
+        ),
+        (
+            1,
+            2
+        ),
+        (
+            1,
+            3
+        )
+        ,
+        (
+            1,
+            4
+        ),
+        (
+            1,
+            5
+        ),
+        (
+            2,
+            1
+        ),
+        (
+            2, 
+            4
+        ),
+        (
+            3,
+            1
+        ),
+        (
+            3,
+            3
+        ),
+        (
+            3,
+            5
+        ),
+        (
+            4,
+            2
+        ),
+        (
+            4,
+            5
         )
     END
-
+    -- Insert da ligaçao entre Scenes e os items.
+    BEGIN
+        INSERT INTO TakeAStep01.dbo.SceneItems(SceneId, ItemId)
+        VALUES 
+        (
+            1,
+            1
+        ),
+        (
+            1,
+            2
+        ),
+        (
+            1,
+            3
+        ),
+        (
+            1,
+            4
+        )
+    END
 END
