@@ -17,22 +17,13 @@ if (mapper == null)
       "Mapper not found");
 }
 
-app.MapGroup("/misc")
-    .Misc()
-    .WithTags("Misc");
-
 app.MapGroup("/scenes")
     .Scenes(mapper)
     .WithTags("Scenes");
 
-app.MapGroup("/choices")
-    .Choices(mapper)
-    .WithTags("Choices");
-
 app.MapGroup("/items")
     .Items(mapper)
     .WithTags("Items");
-    
-    
+      
 app.UseCors(MyAllowSpecificOrigins);
 app.Run();

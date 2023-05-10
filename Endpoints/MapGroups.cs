@@ -21,7 +21,6 @@ namespace Endpoints.Groups
                     .ThenInclude(i => i.Types)
                     .ToListAsync();
                 var scene = list[random.Next(list.Count)];
-
                 if(scene is null)
                     return Results.NotFound();
                 return Results.Ok
