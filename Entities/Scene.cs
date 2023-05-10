@@ -10,7 +10,6 @@ namespace Entities.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
         public int storyId { get; set; }
-        public string? Type { get; set; }
         public string? Text { get; set; }
         // Aqui definimos que a Scene tem Choices. Uso da Keyword virtual: 
         // https://stackoverflow.com/questions/8542864/why-use-virtual-for-class-properties-in-entity-framework-model-definitions

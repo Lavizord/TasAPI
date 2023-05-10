@@ -14,11 +14,12 @@ namespace Endpoints.Groups
             {
                 var random = new Random();
                 var list = await db.Scenes
-                    .Where(s => s.Type == "initial")
                     .Include(s => s.OwnChoices)
                     .Include(s => s.SceneEffect)
+                    .Include(s => s.Types)
                     .Include(s => s.Items)
                     .ThenInclude(i => i.Types)
+                    .Where(s => s.Types.Any(t => String.Equals(t.type, "initial")) )
                     .ToListAsync();
                 var scene = list[random.Next(list.Count)];
                 if(scene is null)
@@ -32,6 +33,7 @@ namespace Endpoints.Groups
             group.MapGet("/complete/{id}", async (int id, TasDB db)=>
             {
                 var scene = await db.Scenes
+                    .Include(s => s.Types)
                     .Include(s => s.OwnChoices)
                     .Include(s => s.SceneEffect)
                     .Include(s => s.Items)

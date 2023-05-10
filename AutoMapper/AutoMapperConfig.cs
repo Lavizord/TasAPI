@@ -17,6 +17,7 @@ namespace Tas.AutoMapper.Configuration
                 .ForMember(dest => dest.Choices, opt => opt.MapFrom(src => src.OwnChoices))
                 .ForMember(dest => dest.SceneEffect, opt => opt.MapFrom(src => src.SceneEffect))
                 .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items))
+                .ForMember(dest => dest.Types, opt => opt.MapFrom(src => src.Types))
                 ;
         }
     }

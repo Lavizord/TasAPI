@@ -8,12 +8,12 @@ namespace DTOs.Scene
     {
         public int Id { get; set; }
         public int storyId { get; set; }
-        public string? type { get; set; }
         public string? text { get; set; }
 
         public List<GetChoicefromSceneDTO>? Choices { get; set; }
         public GetSceneEffectFromSceneDTO? SceneEffect { get; set; }
         public List<ItemDTO> Items { get; set; }
+        public List<TypeDTO> Types { get; set; }
     }
 
     public class GetChoicefromSceneDTO

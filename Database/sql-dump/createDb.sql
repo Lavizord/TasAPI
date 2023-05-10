@@ -672,4 +672,18 @@ BEGIN
             4
         )
     END
+    
+    -- Insert tos SceneTypes
+    BEGIN
+        INSERT INTO TakeAStep01.dbo.SceneTypes(SceneId, TypeId)
+        VALUES 
+        (
+            1,
+            1
+        ),
+        (
+            8,
+            1
+        )
+    END
 END
