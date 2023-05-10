@@ -1,6 +1,13 @@
 ﻿USE [master]
 GO
-/****** Object:  Database [TakeAStep01]    Script Date: 27/04/2023 20:00:52 ******/
+/****** 
+
+    Object:  Database [TakeAStep01]    Script Date: 27/04/2023 20:00:52 
+
+    TODO: Atualziar scripts de criação de DB (REMOVIDO [TYPE] STRING DA [SCENE])
+    TODO: Retificar os INSERTS das SCENES (REMOVIDO [TYPE] STRING DA [SCENE])
+
+******/
 CREATE DATABASE [TakeAStep01]
  CONTAINMENT = NONE
  ON  PRIMARY 

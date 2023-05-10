@@ -5,6 +5,7 @@ using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.DependencyInjection;
 using ConfigurationPOCO;
+// TODO: Limpar este ficheiro. Organziar.
 
 public static class AppConfig
 {

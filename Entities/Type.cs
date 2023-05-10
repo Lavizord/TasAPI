@@ -4,8 +4,7 @@ using Entities.Models.ManyToMany;
 
 namespace Entities.Models 
 {
-    // Esta entidade vai conter todos os tipos possiveis. Testar primeiro no ItemTypes
-    // depois expandir para as restantes.
+    // Esta entidade vai conter todos os tipos possiveis.
     public class Type
     {
         [Key]

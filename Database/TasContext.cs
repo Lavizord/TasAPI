@@ -13,7 +13,6 @@ namespace Entities.Models
         {
             this.ChangeTracker.LazyLoadingEnabled = false;
         }
-        // TODO: Criar os Models iniciais para cada uma das tabelas no diagrama.
         // Aqui definimos as nossas entidades, que são as nossas tabelas.
         public DbSet<Scene> Scenes { get; set; }
         public DbSet<Choice> Choices { get; set; }
@@ -26,8 +25,6 @@ namespace Entities.Models
         public DbSet<SceneItem> SceneItems { get; set; }
         public DbSet<SceneType> SceneTypes { get; set; }
 
-
-        // TODO: Definir as relações restantes no diagrama da DB
         //  Aqui estamos a usar FluentAPI para definir as relações entre as tabelas.
         //  Gosto de usar aqui porque fica mais explicito, pelo menos na minha opinião,
         // mas é possível fazer o mesmo nos Models de Entidades diretamente... São escolhas.

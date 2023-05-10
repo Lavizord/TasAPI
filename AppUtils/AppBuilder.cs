@@ -4,6 +4,7 @@ using Microsoft.OpenApi.Models;
 using ConfigurationPOCO;
 using AutoMapper;
 using Tas.AutoMapper.Configuration;
+// TODO: Limpar este ficheiro. Organziar.
 
 public static class AppBuilder
 {
@@ -21,7 +22,9 @@ public static class AppBuilder
             builder.Configuration.GetSection("DatabaseConfiguration")
         );
 
-        // Setup database connection // TODO: Alterar para POCO?
+        // Setup database connection 
+        // TODO: Alterar para POCO?
+        // TODO: Ler connection string de ENV variable (development flag in app settings)
         var connectionString = builder.Configuration.GetConnectionString("SqlConnectionString");
         
         builder
