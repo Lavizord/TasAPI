@@ -352,7 +352,7 @@ BEGIN
         (
             10,
             2,
-            "You arrive in the town, which is bustling with activity. You see a merchant selling goods on the side of the road. Do you want to buy something?",
+            'You arrive in the town, which is bustling with activity. You see a merchant selling goods on the side of the road. Do you want to buy something?',
             NULL
         ),
         (
@@ -446,97 +446,97 @@ BEGIN
             1,
             1,
             2,
-            "Head towards the smoke."
+            'Head towards the smoke.'
         ),
         (
             2,
             1,
             3,
-            "Stay put and wait for rescue."
+            'Stay put and wait for rescue.'
         ),
         (
             3,
             2,
             4,
-            "Leave the island."
+            'Leave the island.'
         ),
         (
             4,
             3,
             5,
-            "Search for food and water."
+            'Search for food and water.'
         ),
         (
             5,
             3,
             6,
-            "Build a shelter and wait for rescue."
+            'Build a shelter and wait for rescue.'
         ),
         (
             6,
             5,
             6,
-            "Wait."
+            'Wait.'
         ),
         (
             7,
             8,
             9,
-            "Take the path through the forest."
+            'Take the path through the forest.'
         ),
         (
             8,
             8,
             10,
-            "Head to the town."
+            'Head to the town.'
         ),
         (
             9,
             9,
             11,
-            "Fight!"
+            'Fight!'
         ),
         (
             10,
             10,
             12,
-            "Buy something from the merchant."
+            'Buy something from the merchant.'
         ),
         (
             11,
             10,
             13,
-            "Ignore the merchant and keep exploring the town."
+            'Ignore the merchant and keep exploring the town.'
         ),
         (
             12,
             11,
             14,
-            "Explore the cave."
+            'Explore the cave.'
         ),
         (
             13,
             11,
             15,
-            "Continue on your way."
+            'Continue on your way.'
         ),
         (
             14,
             13,
             15,
-            "Open the door and go inside"
+            'Open the door and go inside'
         ),
         (
             15,
             13,
             15,
-            "Leave the door alone and keep exploring."
+            'Leave the door alone and keep exploring.'
         ),
         (
             16,
             14,
             15,
-            "Take the path through the forest."
+            'Take the path through the forest.'
         )
     END
     -- Insert dos Items
